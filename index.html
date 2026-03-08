@@ -1706,264 +1706,127 @@ img { max-width: 100%; display: block; }
 <button class="scroll-top" id="scrollTop">↑</button>
 
 <script>
-/* ================================================
-   GEICO-PRO.COM — App Engine with Hash Routing
-   ================================================ */
-
-// === CONFIG ===
-const PHONE = '(888) 524-0250';
-const PHONE_LINK = 'tel:+18885240250';
-const POPUP_DELAY = 5000;
+/* GEICO-PRO.COM — Clean URL Routing */
 const POPUP_REAPPEAR = 5000;
 const POPUP_MAX_SHOWS = 3;
 const GEICO_PAGES = ['geico-auto','geico-home','geico-moto','geico-umbrella','geico-renters','geico-condo','geico-bundle','geico-compare','geico-sr22'];
-
-// Map clean URL slugs to page IDs
 const ROUTES = {
-  '': 'home', 'home': 'home', 'about': 'about', 'how-it-works': 'how',
-  'compare-auto': 'geico-auto', 'compare-home': 'geico-home',
-  'compare-renters': 'geico-renters', 'compare-motorcycle': 'geico-moto',
-  'bundle-save': 'geico-bundle', 'compare': 'compare',
-  'connect': 'connect', 'contact': 'connect', 'quote': 'connect',
-  'deals': 'deals', 'discounts': 'deals', 'coverage': 'coverage',
-  'faq': 'faq', 'privacy': 'privacy', 'terms': 'terms',
-  'disclaimer': 'disclaimer'
+  '/':'home', '/home':'home', '/about':'about', '/how-it-works':'how',
+  '/compare-auto':'geico-auto', '/compare-home':'geico-home',
+  '/compare-renters':'geico-renters', '/compare-motorcycle':'geico-moto',
+  '/bundle-save':'geico-bundle', '/compare':'compare',
+  '/connect':'connect', '/contact':'connect', '/quote':'connect',
+  '/deals':'deals', '/discounts':'deals', '/coverage':'coverage',
+  '/faq':'faq', '/privacy':'privacy', '/terms':'terms', '/disclaimer':'disclaimer'
 };
+const SLUGS = {
+  home:'/', about:'/about', how:'/how-it-works',
+  'geico-auto':'/compare-auto', 'geico-home':'/compare-home',
+  'geico-renters':'/compare-renters', 'geico-moto':'/compare-motorcycle',
+  'geico-bundle':'/bundle-save', compare:'/compare',
+  connect:'/connect', deals:'/deals', coverage:'/coverage',
+  faq:'/faq', privacy:'/privacy', terms:'/terms', disclaimer:'/disclaimer'
+};
+const TITLES = {
+  home:'GEICO-Pro.com \u2014 Compare Insurance Rates',
+  about:'About Us \u2014 GEICO-Pro.com', how:'How It Works \u2014 GEICO-Pro.com',
+  'geico-auto':'Compare Auto Insurance \u2014 GEICO-Pro.com',
+  'geico-home':'Compare Home Insurance \u2014 GEICO-Pro.com',
+  'geico-renters':'Compare Renters Insurance \u2014 GEICO-Pro.com',
+  'geico-moto':'Compare Motorcycle Insurance \u2014 GEICO-Pro.com',
+  'geico-bundle':'Bundle & Save \u2014 GEICO-Pro.com',
+  compare:'Coverage Comparison \u2014 GEICO-Pro.com',
+  connect:'Get Quote Assistance \u2014 GEICO-Pro.com',
+  deals:'Deals & Discounts \u2014 GEICO-Pro.com',
+  coverage:'All Coverage Types \u2014 GEICO-Pro.com',
+  faq:'FAQ \u2014 GEICO-Pro.com', privacy:'Privacy Policy \u2014 GEICO-Pro.com',
+  terms:'Terms & Conditions \u2014 GEICO-Pro.com', disclaimer:'Disclaimer \u2014 GEICO-Pro.com'
+};
+let popupCount=0, popupTimer=null, currentPage='home', scrollPopupFired=false;
 
-// Reverse map: page ID -> slug
-const SLUGS = {};
-Object.entries(ROUTES).forEach(([slug, id]) => {
-  if (!SLUGS[id] || slug.length > 0) SLUGS[id] = slug;
-});
-SLUGS['home'] = '';
-
-let popupCount = 0;
-let popupTimer = null;
-let currentPage = 'home';
-let scrollPopupFired = false;
-
-// === HASH-BASED ROUTING ===
-function go(page, pushState = true) {
-  // Reset popup
-  popupCount = 0;
-  clearTimeout(popupTimer);
-  hidePopup();
-  scrollPopupFired = false;
-
-  // Switch pages
-  document.querySelectorAll('.pg').forEach(p => {
-    p.classList.remove('active');
-    p.style.animation = 'none';
-  });
-  const target = document.getElementById('pg-' + page);
-  if (!target) { go('home', pushState); return; }
-  target.offsetHeight;
-  target.style.animation = 'fadeIn 0.35s ease';
-  target.classList.add('active');
-
-  // Update nav highlights
-  document.querySelectorAll('.nav > a[data-page]').forEach(a =>
-    a.classList.toggle('active', a.dataset.page === page)
-  );
-
-  // Update URL hash
-  const slug = SLUGS[page] || page;
-  if (pushState) {
-    const newHash = slug ? '#/' + slug : '#/';
-    if (window.location.hash !== newHash) {
-      history.pushState({ page }, '', slug ? '#/' + slug : '#/');
-    }
-  }
-
-  // Update page title
-  const titles = {
-    'home': 'GEICO-Pro.com — Compare Insurance Rates',
-    'about': 'About Us — GEICO-Pro.com',
-    'how': 'How It Works — GEICO-Pro.com',
-    'geico-auto': 'Compare Auto Insurance — GEICO-Pro.com',
-    'geico-home': 'Compare Home Insurance — GEICO-Pro.com',
-    'geico-renters': 'Compare Renters Insurance — GEICO-Pro.com',
-    'geico-moto': 'Compare Motorcycle Insurance — GEICO-Pro.com',
-    'geico-bundle': 'Bundle & Save — GEICO-Pro.com',
-    'compare': 'Coverage Comparison — GEICO-Pro.com',
-    'connect': 'Get Quote Assistance — GEICO-Pro.com',
-    'deals': 'Deals & Discounts — GEICO-Pro.com',
-    'coverage': 'All Coverage Types — GEICO-Pro.com',
-    'faq': 'FAQ — GEICO-Pro.com',
-    'privacy': 'Privacy Policy — GEICO-Pro.com',
-    'terms': 'Terms & Conditions — GEICO-Pro.com',
-    'disclaimer': 'Disclaimer — GEICO-Pro.com',
-  };
-  document.title = titles[page] || 'GEICO-Pro.com';
-
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  currentPage = page;
-  setTimeout(initReveal, 150);
-
-  // Schedule popup on GEICO pages
-  if (GEICO_PAGES.includes(page)) {
-    schedulePopup(POPUP_DELAY);
-  }
+function go(page, push=true) {
+  popupCount=0; clearTimeout(popupTimer); hidePopup(); scrollPopupFired=false;
+  document.querySelectorAll('.pg').forEach(p=>{p.classList.remove('active');p.style.animation='none'});
+  const t=document.getElementById('pg-'+page);
+  if(!t){go('home',push);return}
+  t.offsetHeight; t.style.animation='fadeIn 0.35s ease'; t.classList.add('active');
+  document.querySelectorAll('.nav > a[data-page]').forEach(a=>a.classList.toggle('active',a.dataset.page===page));
+  if(push){const slug=SLUGS[page]||'/';if(location.pathname!==slug)history.pushState({page},'',slug)}
+  document.title=TITLES[page]||'GEICO-Pro.com';
+  window.scrollTo({top:0,behavior:'smooth'});
+  currentPage=page;
+  setTimeout(initReveal,150);
+  if(GEICO_PAGES.includes(page)){setTimeout(showPopup,500)}
 }
 
-// Handle browser back/forward
-window.addEventListener('hashchange', () => {
-  const hash = window.location.hash.replace('#/', '').replace('#', '');
-  const page = ROUTES[hash] || 'home';
-  go(page, false);
-});
+window.addEventListener('popstate',()=>{const p=ROUTES[location.pathname]||'home';go(p,false)});
 
-// Handle initial page load from URL
-function initRouter() {
-  const hash = window.location.hash.replace('#/', '').replace('#', '');
-  const page = ROUTES[hash] || 'home';
-  if (page !== 'home') {
-    go(page, false);
-  }
+function initRouter(){
+  let path=location.pathname;
+  // Handle old hash URLs too
+  if(location.hash){const h=location.hash.replace('#/','').replace('#','');if(h){path='/'+h}}
+  const page=ROUTES[path]||'home';
+  if(page!=='home')go(page,true); // push clean URL to replace hash
 }
 
-// === MOBILE MENU ===
-function openMobile() {
-  document.getElementById('mobileMenu').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-function closeMobile() {
-  document.getElementById('mobileMenu').classList.remove('open');
-  document.body.style.overflow = '';
-}
-function closeMobileOv(e) {
-  if (e.target === document.getElementById('mobileMenu')) closeMobile();
+function openMobile(){document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden'}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow=''}
+function closeMobileOv(e){if(e.target===document.getElementById('mobileMenu'))closeMobile()}
+
+window.addEventListener('scroll',()=>{
+  const h=document.getElementById('siteHeader'),st=document.getElementById('scrollTop');
+  if(h)h.classList.toggle('scrolled',scrollY>30);
+  if(st)st.classList.toggle('show',scrollY>500);
+},{passive:true});
+
+function toggleFaq(el){
+  const item=el.parentElement,ans=item.querySelector('.faq-a'),isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});
+  if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
 }
 
-// === HEADER SCROLL ===
-window.addEventListener('scroll', () => {
-  const h = document.getElementById('siteHeader');
-  const st = document.getElementById('scrollTop');
-  if (h) h.classList.toggle('scrolled', scrollY > 30);
-  if (st) st.classList.toggle('show', scrollY > 500);
-}, { passive: true });
-
-// === FAQ ACCORDION ===
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const ans = item.querySelector('.faq-a');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => {
-    i.classList.remove('open');
-    i.querySelector('.faq-a').style.maxHeight = '0';
-  });
-  if (!isOpen) {
-    item.classList.add('open');
-    ans.style.maxHeight = ans.scrollHeight + 'px';
-  }
-}
-
-// === POPUP SYSTEM ===
-function showPopup() {
-  if (!GEICO_PAGES.includes(currentPage)) return;
-  if (popupCount >= POPUP_MAX_SHOWS) return;
+function showPopup(){
+  if(!GEICO_PAGES.includes(currentPage)||popupCount>=POPUP_MAX_SHOWS)return;
   popupCount++;
-  const overlay = document.getElementById('popupBg');
-  if (overlay) {
-    overlay.classList.add('show');
-    const modal = overlay.querySelector('.popup-modal');
-    if (modal) { modal.style.animation = 'none'; modal.offsetHeight; modal.style.animation = ''; }
-  }
+  const o=document.getElementById('popupBg');
+  if(o){o.classList.add('show');const m=o.querySelector('.popup-modal');if(m){m.style.animation='none';m.offsetHeight;m.style.animation=''}}
 }
-
-function hidePopup() {
-  const overlay = document.getElementById('popupBg');
-  if (overlay) overlay.classList.remove('show');
-  if (GEICO_PAGES.includes(currentPage) && popupCount < POPUP_MAX_SHOWS) {
-    schedulePopup(POPUP_REAPPEAR);
-  }
+function hidePopup(){
+  const o=document.getElementById('popupBg');if(o)o.classList.remove('show');
+  if(GEICO_PAGES.includes(currentPage)&&popupCount<POPUP_MAX_SHOWS){clearTimeout(popupTimer);popupTimer=setTimeout(showPopup,POPUP_REAPPEAR)}
 }
+document.addEventListener('click',e=>{if(e.target&&e.target.id==='popupBg')hidePopup()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hidePopup()});
+window.addEventListener('scroll',()=>{
+  if(scrollPopupFired||!GEICO_PAGES.includes(currentPage))return;
+  if((scrollY+innerHeight)/document.body.scrollHeight>0.45){scrollPopupFired=true;showPopup()}
+},{passive:true});
 
-function schedulePopup(delay) {
-  clearTimeout(popupTimer);
-  popupTimer = setTimeout(showPopup, delay);
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.rv:not(.vis)').forEach(el=>obs.observe(el));
 }
-
-document.addEventListener('click', (e) => {
-  if (e.target && e.target.id === 'popupBg') hidePopup();
-});
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') hidePopup();
-});
-
-window.addEventListener('scroll', () => {
-  if (scrollPopupFired) return;
-  if (!GEICO_PAGES.includes(currentPage)) return;
-  if ((scrollY + innerHeight) / document.body.scrollHeight > 0.45) {
-    scrollPopupFired = true;
-    showPopup();
-  }
-}, { passive: true });
-
-// === SCROLL REVEAL ===
-function initReveal() {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) { entry.target.classList.add('vis'); obs.unobserve(entry.target); }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.rv:not(.vis)').forEach(el => obs.observe(el));
-}
-
-// === COUNTER ANIMATION ===
-function animateCounters() {
-  document.querySelectorAll('[data-count]').forEach(el => {
-    if (el.dataset.counted) return;
-    el.dataset.counted = '1';
-    const target = parseInt(el.dataset.count);
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    let current = 0;
-    const step = Math.ceil(target / 45);
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) { current = target; clearInterval(timer); }
-      el.textContent = prefix + current + suffix;
-    }, 28);
+function animateCounters(){
+  document.querySelectorAll('[data-count]').forEach(el=>{
+    if(el.dataset.counted)return;el.dataset.counted='1';
+    const t=parseInt(el.dataset.count),pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+    let c=0;const step=Math.ceil(t/45);
+    const timer=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(timer)}el.textContent=pre+c+suf},28);
   });
 }
-
-function initCounters() {
-  document.querySelectorAll('.hero-stats, .stats-row').forEach(el => {
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) { animateCounters(); obs.disconnect(); }
-      });
-    }, { threshold: 0.3 });
-    obs.observe(el);
+function initCounters(){
+  document.querySelectorAll('.hero-stats, .stats-row').forEach(el=>{
+    const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCounters();obs.disconnect()}})},{threshold:0.3});obs.observe(el);
   });
 }
-
-// === CARD TILT ===
-function initTilt() {
-  document.querySelectorAll('.card, .prov-card, .why-card, .cov-card, .deal, .gf-card, .test-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `translateY(-8px) perspective(600px) rotateY(${x*5}deg) rotateX(${-y*5}deg)`;
-    });
-    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+function initTilt(){
+  document.querySelectorAll('.card,.prov-card,.why-card,.cov-card,.deal,.gf-card,.test-card').forEach(c=>{
+    c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;c.style.transform=`translateY(-8px) perspective(600px) rotateY(${x*5}deg) rotateX(${-y*5}deg)`});
+    c.addEventListener('mouseleave',()=>{c.style.transform=''});
   });
 }
-
-// === INIT ===
-document.addEventListener('DOMContentLoaded', () => {
-  initReveal();
-  initCounters();
-  initTilt();
-  initRouter();
-
-  document.getElementById('scrollTop')?.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-});
-
+document.addEventListener('DOMContentLoaded',()=>{initReveal();initCounters();initTilt();initRouter();document.getElementById('scrollTop')?.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}))});
 </script>
+
 </body>
 </html>
