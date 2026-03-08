@@ -9,644 +9,337 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700;8..60,800&display=swap" rel="stylesheet">
 <style>
-/* ============================================
-   CSS VARIABLES
-   ============================================ */
-:root {
-  --green-600:#007A3D; --green-700:#005A2B; --green-500:#00A84F;
-  --green-100:#E6F5EC; --green-50:#F0FAF4;
-  --blue-600:#1A6DD4; --blue-100:#E8F1FC;
-  --white:#FFFFFF; --gray-50:#F9FAFB; --gray-100:#F3F4F6;
-  --gray-200:#E5E7EB; --gray-300:#D1D5DB; --gray-400:#9CA3AF;
-  --gray-500:#6B7280; --gray-600:#4B5563; --gray-700:#374151;
-  --gray-800:#1F2937; --gray-900:#111827;
-  --red-500:#EF4444; --amber-500:#F59E0B;
-  --radius:12px; --radius-lg:16px; --radius-xl:20px;
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.06);
-  --shadow-md:0 4px 12px rgba(0,0,0,0.06);
-  --shadow-lg:0 10px 30px rgba(0,0,0,0.08);
-  --shadow-xl:0 20px 50px rgba(0,0,0,0.1);
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --t: all 0.3s var(--ease-out-expo);
-}
-
-/* ============================================
-   RESET
-   ============================================ */
+:root{--g6:#007A3D;--g7:#005A2B;--g5:#00A84F;--g1:#E6F5EC;--g0:#F0FAF4;--b6:#1A6DD4;--b1:#E8F1FC;--w:#FFF;--f50:#F9FAFB;--f1:#F3F4F6;--f2:#E5E7EB;--f3:#D1D5DB;--f4:#9CA3AF;--f5:#6B7280;--f6:#4B5563;--f7:#374151;--f8:#1F2937;--f9:#111827;--r5:#EF4444;--a5:#F59E0B;--rad:12px;--rl:16px;--rxl:20px;--s1:0 1px 3px rgba(0,0,0,.06);--s2:0 4px 12px rgba(0,0,0,.06);--s3:0 10px 30px rgba(0,0,0,.08);--s4:0 20px 50px rgba(0,0,0,.1);--ease:cubic-bezier(.16,1,.3,1);--spring:cubic-bezier(.34,1.56,.64,1);--t:all .3s var(--ease)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;color:var(--gray-800);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
-
-/* ============================================
-   ANIMATIONS
-   ============================================ */
-@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-@keyframes slideLeft{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
-@keyframes slideRight{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(0.92)}to{opacity:1;transform:scale(1)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes ripple{0%{box-shadow:0 0 0 0 rgba(0,122,61,0.25)}100%{box-shadow:0 0 0 20px rgba(0,122,61,0)}}
-@keyframes typing{from{width:0}to{width:100%}}
-@keyframes blink{0%,100%{border-color:transparent}50%{border-color:var(--green-600)}}
-@keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes countUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-@keyframes slideInBounce{0%{opacity:0;transform:translateY(40px)}60%{transform:translateY(-6px)}100%{opacity:1;transform:translateY(0)}}
-@keyframes wiggle{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
-@keyframes glow{0%,100%{box-shadow:0 0 5px rgba(0,122,61,0.2)}50%{box-shadow:0 0 20px rgba(0,122,61,0.4)}}
-
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s var(--ease-out-expo),transform 0.7s var(--ease-out-expo)}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
-.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.30s}.reveal.d6{transition-delay:.36s}
-
-/* Page transitions */
-.page{display:none;animation:fadeIn .4s ease}
-.page.active{display:block}
-
-/* ============================================
-   LAYOUT
-   ============================================ */
+body{font-family:'Inter',-apple-system,sans-serif;color:var(--f8);background:var(--w);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}button{font-family:inherit;cursor:pointer}
 .container{max-width:1180px;margin:0 auto;padding:0 24px}
 
-/* ============================================
-   HEADER
-   ============================================ */
-.header{
-  background:rgba(255,255,255,0.92);
-  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--gray-200);
-  position:sticky;top:0;z-index:1000;
-  transition:box-shadow .3s ease,background .3s ease;
-}
-.header.scrolled{box-shadow:0 1px 16px rgba(0,0,0,0.06);background:rgba(255,255,255,0.97)}
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes glow{0%,100%{box-shadow:0 0 5px rgba(0,122,61,.2)}50%{box-shadow:0 0 20px rgba(0,122,61,.4)}}
+@keyframes popBounce{0%{opacity:0;transform:scale(.5) translateY(40px)}50%{transform:scale(1.08) translateY(-8px)}70%{transform:scale(.96)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes ringPulse{0%{transform:scale(.8);opacity:.6}100%{transform:scale(2.5);opacity:0}}
+@keyframes confetti{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(120px) rotate(720deg);opacity:0}}
+@keyframes typewriter{from{width:0}to{width:100%}}
+@keyframes shimmerSlide{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+@keyframes shake{0%,100%{transform:translateX(0)}10%,30%,50%,70%,90%{transform:translateX(-4px)}20%,40%,60%,80%{transform:translateX(4px)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes progressFill{from{width:0}to{width:100%}}
+@keyframes starPop{0%{transform:scale(0) rotate(-20deg);opacity:0}50%{transform:scale(1.3) rotate(10deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
+.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}.reveal.d6{transition-delay:.36s}
+.page{display:none;animation:fadeIn .35s ease}.page.active{display:block}
+
+/* Header */
+.header{background:rgba(255,255,255,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--f2);position:sticky;top:0;z-index:1000;transition:box-shadow .3s}
+.header.scrolled{box-shadow:0 1px 16px rgba(0,0,0,.06)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-
-/* Logo */
-.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--gray-900);transition:var(--t)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;color:var(--f9);transition:var(--t)}
 .logo:hover{transform:scale(1.02)}
-.logo-mark{
-  width:38px;height:38px;
-  background:linear-gradient(135deg,var(--green-600),var(--green-700));
-  border-radius:10px;display:flex;align-items:center;justify-content:center;
-  transition:var(--t);position:relative;overflow:hidden;
-}
-.logo:hover .logo-mark{transform:rotate(-4deg) scale(1.05);box-shadow:0 4px 16px rgba(0,122,61,0.3)}
+.logo-mark{width:38px;height:38px;background:linear-gradient(135deg,var(--g6),var(--g7));border-radius:10px;display:flex;align-items:center;justify-content:center;transition:var(--t)}
+.logo:hover .logo-mark{transform:rotate(-4deg) scale(1.05);box-shadow:0 4px 16px rgba(0,122,61,.3)}
 .logo-mark svg{width:22px;height:22px}
-.logo-text span{color:var(--green-600)}
-
-/* Nav */
+.logo-text span{color:var(--g6)}
 .nav{display:flex;align-items:center;gap:2px}
-.nav>a,.nav-drop>.nav-trigger{
-  padding:8px 14px;font-size:14px;font-weight:500;color:var(--gray-600);
-  border-radius:8px;transition:var(--t);display:inline-flex;align-items:center;gap:4px;
-  background:none;border:none;position:relative;overflow:hidden;
-}
-.nav>a::after{
-  content:'';position:absolute;bottom:4px;left:50%;width:0;height:2px;
-  background:var(--green-600);border-radius:2px;transition:all .3s var(--ease-out-expo);
-  transform:translateX(-50%);
-}
+.nav>a,.nav-drop>.nav-trigger{padding:8px 14px;font-size:14px;font-weight:500;color:var(--f6);border-radius:8px;transition:var(--t);display:inline-flex;align-items:center;gap:4px;background:none;border:none;position:relative}
+.nav>a::after{content:'';position:absolute;bottom:4px;left:50%;width:0;height:2px;background:var(--g6);border-radius:2px;transition:all .3s var(--ease);transform:translateX(-50%)}
 .nav>a:hover::after,.nav>a.active::after{width:calc(100% - 28px)}
-.nav>a:hover,.nav-drop:hover>.nav-trigger{color:var(--green-600);background:var(--green-50)}
-.nav>a.active{color:var(--green-600);font-weight:600}
-
-/* Nav dropdown */
+.nav>a:hover,.nav-drop:hover>.nav-trigger{color:var(--g6);background:var(--g0)}
+.nav>a.active{color:var(--g6);font-weight:600}
 .nav-drop{position:relative}
-.nav-drop-menu{
-  position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(8px);
-  background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius);
-  box-shadow:var(--shadow-lg);padding:8px;min-width:210px;
-  opacity:0;visibility:hidden;transition:all .25s var(--ease-out-expo);z-index:100;
-}
+.nav-drop-menu{position:absolute;top:calc(100% + 6px);left:50%;transform:translateX(-50%) translateY(8px);background:var(--w);border:1px solid var(--f2);border-radius:var(--rad);box-shadow:var(--s3);padding:8px;min-width:210px;opacity:0;visibility:hidden;transition:all .25s var(--ease);z-index:100}
 .nav-drop:hover .nav-drop-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.nav-drop-menu a{
-  display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;
-  font-size:14px;font-weight:500;color:var(--gray-700);transition:var(--t);
-}
-.nav-drop-menu a:hover{background:var(--green-50);color:var(--green-600);transform:translateX(4px)}
+.nav-drop-menu a{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;color:var(--f7);transition:var(--t)}
+.nav-drop-menu a:hover{background:var(--g0);color:var(--g6);transform:translateX(4px)}
 .nav-drop-menu .ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-
-/* Header CTA */
 .header-right{display:flex;align-items:center;gap:12px}
-.header-phone{
-  display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;
-  color:var(--green-600);padding:6px 12px;border-radius:8px;transition:var(--t);
-}
-.header-phone:hover{background:var(--green-50)}
-
-/* Buttons */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;
-  transition:var(--t);border:none;position:relative;overflow:hidden;
-}
-.btn::after{
-  content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.2) 50%,transparent 70%);
-  transform:translateX(-100%);transition:transform .6s ease;
-}
+.header-phone{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:var(--g6);padding:6px 12px;border-radius:8px;transition:var(--t)}
+.header-phone:hover{background:var(--g0)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 20px;border-radius:8px;font-size:14px;font-weight:600;transition:var(--t);border:none;position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.2) 50%,transparent 70%);transform:translateX(-100%);transition:transform .6s}
 .btn:hover::after{transform:translateX(100%)}
-.btn-primary{background:var(--green-600);color:var(--white)}
-.btn-primary:hover{background:var(--green-700);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,122,61,0.25)}
-.btn-outline{background:transparent;color:var(--green-600);border:1.5px solid var(--green-600)}
-.btn-outline:hover{background:var(--green-600);color:var(--white);transform:translateY(-2px)}
+.btn-primary{background:var(--g6);color:var(--w)}.btn-primary:hover{background:var(--g7);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,122,61,.25)}
+.btn-outline{background:transparent;color:var(--g6);border:1.5px solid var(--g6)}.btn-outline:hover{background:var(--g6);color:var(--w);transform:translateY(-2px)}
 .btn-lg{padding:14px 28px;font-size:15px;border-radius:10px}
-
-/* Mobile */
 .mobile-btn{display:none;background:none;border:none;padding:6px;flex-direction:column;gap:5px}
-.mobile-btn span{width:22px;height:2px;background:var(--gray-700);border-radius:2px;display:block;transition:var(--t)}
-.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:9999;display:none}
+.mobile-btn span{width:22px;height:2px;background:var(--f7);border-radius:2px;display:block;transition:var(--t)}
+.mobile-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:9999;display:none}
 .mobile-overlay.open{display:block;animation:fadeIn .2s}
-.mobile-drawer{
-  position:absolute;right:0;top:0;bottom:0;width:300px;background:var(--white);
-  padding:20px;overflow-y:auto;transform:translateX(100%);transition:transform .3s var(--ease-out-expo);
-}
+.mobile-drawer{position:absolute;right:0;top:0;bottom:0;width:300px;background:var(--w);padding:20px;overflow-y:auto;transform:translateX(100%);transition:transform .3s var(--ease)}
 .mobile-overlay.open .mobile-drawer{transform:translateX(0)}
-.mobile-drawer .close-btn{position:absolute;top:12px;right:12px;background:none;border:none;font-size:24px;color:var(--gray-500)}
+.mobile-drawer .close-btn{position:absolute;top:12px;right:12px;background:none;border:none;font-size:24px;color:var(--f5)}
 .mobile-drawer nav{display:flex;flex-direction:column;gap:2px;margin-top:40px}
-.mobile-drawer nav a{padding:12px 14px;font-size:15px;font-weight:500;color:var(--gray-700);border-radius:8px;transition:var(--t)}
-.mobile-drawer nav a:hover{background:var(--green-50);color:var(--green-600)}
+.mobile-drawer nav a{padding:12px 14px;font-size:15px;font-weight:500;color:var(--f7);border-radius:8px;transition:var(--t)}
+.mobile-drawer nav a:hover{background:var(--g0);color:var(--g6)}
 
-/* ============================================
-   HERO
-   ============================================ */
-.hero{
-  background:var(--white);border-bottom:1px solid var(--gray-100);
-  padding:72px 0 64px;text-align:center;
-  position:relative;overflow:hidden;
-}
-/* Animated background orbs */
-.hero::before,.hero::after{
-  content:'';position:absolute;border-radius:50%;
-  filter:blur(80px);opacity:0.4;animation:float 8s ease-in-out infinite;pointer-events:none;
-}
-.hero::before{width:500px;height:500px;background:var(--green-100);top:-200px;right:-100px;animation-delay:0s}
-.hero::after{width:400px;height:400px;background:var(--blue-100);bottom:-150px;left:-80px;animation-delay:4s}
-
+/* Hero */
+.hero{background:var(--w);border-bottom:1px solid var(--f1);padding:72px 0 64px;text-align:center;position:relative;overflow:hidden}
+.hero::before,.hero::after{content:'';position:absolute;border-radius:50%;filter:blur(80px);opacity:.4;animation:float 8s ease-in-out infinite;pointer-events:none}
+.hero::before{width:500px;height:500px;background:var(--g1);top:-200px;right:-100px}
+.hero::after{width:400px;height:400px;background:var(--b1);bottom:-150px;left:-80px;animation-delay:4s}
 .hero .container{position:relative;z-index:1}
-.hero .badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:var(--green-50);color:var(--green-600);
-  font-size:13px;font-weight:600;padding:5px 14px;
-  border-radius:20px;margin-bottom:20px;
-  border:1px solid var(--green-100);
-  animation:fadeUp .6s var(--ease-out-expo) .1s both;
-}
-.hero .badge .dot{
-  width:6px;height:6px;border-radius:50%;
-  background:var(--green-500);animation:pulse 2s infinite;
-}
-.hero h1{
-  font-family:'Source Serif 4',Georgia,serif;
-  font-size:clamp(34px,5vw,54px);font-weight:800;
-  color:var(--gray-900);line-height:1.15;margin-bottom:18px;
-  max-width:740px;margin-left:auto;margin-right:auto;
-  animation:fadeUp .7s var(--ease-out-expo) .2s both;
-}
-.hero h1 em{font-style:normal;color:var(--green-600);position:relative}
-.hero h1 em::after{
-  content:'';position:absolute;bottom:2px;left:0;right:0;
-  height:8px;background:rgba(0,122,61,0.12);border-radius:4px;
-  z-index:-1;
-}
-.hero>.container>p{
-  font-size:17px;color:var(--gray-500);max-width:600px;
-  margin:0 auto 36px;line-height:1.7;
-  animation:fadeUp .7s var(--ease-out-expo) .3s both;
-}
-.hero-actions{
-  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;
-  animation:fadeUp .7s var(--ease-out-expo) .4s both;
-}
-/* Animated phone CTA */
+.hero .badge{display:inline-flex;align-items:center;gap:6px;background:var(--g0);color:var(--g6);font-size:13px;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:20px;border:1px solid var(--g1);animation:fadeUp .6s var(--ease) .1s both}
+.hero .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--g5);animation:pulse 2s infinite}
+.hero h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(34px,5vw,54px);font-weight:800;color:var(--f9);line-height:1.15;margin-bottom:18px;max-width:740px;margin-left:auto;margin-right:auto;animation:fadeUp .7s var(--ease) .2s both}
+.hero h1 em{font-style:normal;color:var(--g6);position:relative}
+.hero h1 em::after{content:'';position:absolute;bottom:2px;left:0;right:0;height:8px;background:rgba(0,122,61,.12);border-radius:4px;z-index:-1}
+.hero>.container>p{font-size:17px;color:var(--f5);max-width:600px;margin:0 auto 36px;line-height:1.7;animation:fadeUp .7s var(--ease) .3s both}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px;animation:fadeUp .7s var(--ease) .4s both}
 .hero-actions .btn-primary{animation:glow 3s ease-in-out infinite}
-.hero-search{
-  display:flex;max-width:480px;margin:0 auto 20px;
-  border:1.5px solid var(--gray-200);border-radius:10px;
-  overflow:hidden;background:var(--white);transition:var(--t);
-  animation:fadeUp .7s var(--ease-out-expo) .5s both;
-}
-.hero-search:focus-within{border-color:var(--green-500);box-shadow:0 0 0 4px rgba(0,122,61,0.08)}
-.hero-search input{
-  flex:1;border:none;padding:14px 16px;font-size:15px;
-  font-family:inherit;outline:none;color:var(--gray-800);
-}
-.hero-search input::placeholder{color:var(--gray-400)}
-.hero-search button{
-  background:var(--green-600);color:var(--white);border:none;
-  padding:0 22px;font-size:14px;font-weight:600;cursor:pointer;transition:var(--t);
-}
-.hero-search button:hover{background:var(--green-700)}
-.hero-hours{font-size:13px;color:var(--gray-400);animation:fadeUp .7s var(--ease-out-expo) .6s both}
-
-/* Hero stats */
-.hero-stats{
-  display:flex;gap:48px;justify-content:center;margin-top:40px;
-  animation:fadeUp .7s var(--ease-out-expo) .7s both;
-}
+.hero-search{display:flex;max-width:480px;margin:0 auto 20px;border:1.5px solid var(--f2);border-radius:10px;overflow:hidden;background:var(--w);transition:var(--t);animation:fadeUp .7s var(--ease) .5s both}
+.hero-search:focus-within{border-color:var(--g5);box-shadow:0 0 0 4px rgba(0,122,61,.08)}
+.hero-search input{flex:1;border:none;padding:14px 16px;font-size:15px;font-family:inherit;outline:none;color:var(--f8)}
+.hero-search input::placeholder{color:var(--f4)}
+.hero-search button{background:var(--g6);color:var(--w);border:none;padding:0 22px;font-size:14px;font-weight:600;transition:var(--t)}
+.hero-search button:hover{background:var(--g7)}
+.hero-hours{font-size:13px;color:var(--f4);animation:fadeUp .7s var(--ease) .6s both}
+.hero-stats{display:flex;gap:48px;justify-content:center;margin-top:40px;animation:fadeUp .7s var(--ease) .7s both}
 .hero-stat{text-align:center}
-.hero-stat-value{
-  font-family:'Source Serif 4',Georgia,serif;
-  font-size:36px;font-weight:800;color:var(--green-600);line-height:1;
-}
-.hero-stat-label{font-size:13px;color:var(--gray-400);margin-top:4px;font-weight:500}
+.hero-stat-value{font-family:'Source Serif 4',Georgia,serif;font-size:36px;font-weight:800;color:var(--g6);line-height:1}
+.hero-stat-label{font-size:13px;color:var(--f4);margin-top:4px;font-weight:500}
 
-/* ============================================
-   SECTIONS
-   ============================================ */
-.section{padding:80px 0}
-.section.alt{background:var(--gray-50)}
+/* Sections */
+.section{padding:80px 0}.section.alt{background:var(--f50)}
 .section-head{text-align:center;max-width:620px;margin:0 auto 52px}
-.section-head h2{
-  font-family:'Source Serif 4',Georgia,serif;
-  font-size:clamp(24px,3vw,36px);font-weight:700;
-  color:var(--gray-900);margin-bottom:12px;
-}
-.section-head p{font-size:15px;color:var(--gray-500);line-height:1.7}
+.section-head h2{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--f9);margin-bottom:12px}
+.section-head p{font-size:15px;color:var(--f5);line-height:1.7}
 
-/* ============================================
-   CARDS — 3 COLUMN
-   ============================================ */
+/* Cards */
 .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.card{
-  background:var(--white);border:1px solid var(--gray-200);
-  border-radius:var(--radius-lg);padding:32px 28px;
-  transition:all .35s var(--ease-out-expo);position:relative;overflow:hidden;
-}
-.card::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:linear-gradient(90deg,var(--green-500),var(--blue-600));
-  transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease-out-expo);
-}
+.card{background:var(--w);border:1px solid var(--f2);border-radius:var(--rl);padding:32px 28px;transition:all .35s var(--ease);position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g5),var(--b6));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
 .card:hover::before{transform:scaleX(1)}
-.card:hover{border-color:var(--green-500);box-shadow:var(--shadow-lg);transform:translateY(-6px)}
-.card .card-icon{
-  width:52px;height:52px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:26px;margin-bottom:18px;transition:var(--t);
-}
+.card:hover{border-color:var(--g5);box-shadow:var(--s3);transform:translateY(-6px)}
+.card .card-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:18px;transition:var(--t)}
 .card:hover .card-icon{transform:scale(1.1) rotate(-4deg)}
-.card h3{font-size:18px;font-weight:700;color:var(--gray-900);margin-bottom:8px}
-.card p{font-size:14px;color:var(--gray-500);line-height:1.65;margin-bottom:18px}
-.card-link{
-  display:inline-flex;align-items:center;gap:4px;
-  font-size:14px;font-weight:600;color:var(--green-600);transition:var(--t);
-}
-.card-link:hover{gap:10px;color:var(--green-700)}
+.card h3{font-size:18px;font-weight:700;color:var(--f9);margin-bottom:8px}
+.card p{font-size:14px;color:var(--f5);line-height:1.65;margin-bottom:18px}
+.card-link{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:var(--g6);transition:var(--t)}
+.card-link:hover{gap:10px}
 
-/* ============================================
-   PROVIDER CARDS — 4 GRID
-   ============================================ */
 .cards-4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.prov-card{
-  background:var(--white);border:1px solid var(--gray-200);
-  border-radius:var(--radius-lg);padding:28px 20px;
-  text-align:center;transition:all .35s var(--ease-out-expo);cursor:pointer;
-}
-.prov-card:hover{border-color:var(--green-500);box-shadow:var(--shadow-lg);transform:translateY(-6px) scale(1.02)}
-.prov-card .prov-icon{
-  width:60px;height:60px;border-radius:16px;margin:0 auto 14px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:30px;transition:var(--t);
-}
+.prov-card{background:var(--w);border:1px solid var(--f2);border-radius:var(--rl);padding:28px 20px;text-align:center;transition:all .35s var(--ease);cursor:pointer}
+.prov-card:hover{border-color:var(--g5);box-shadow:var(--s3);transform:translateY(-6px) scale(1.02)}
+.prov-card .prov-icon{width:60px;height:60px;border-radius:16px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:30px;transition:var(--t)}
 .prov-card:hover .prov-icon{transform:scale(1.15) rotate(6deg)}
-.prov-card h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:4px}
-.prov-card span{font-size:13px;color:var(--green-600);font-weight:600;transition:var(--t)}
-.prov-card:hover span{letter-spacing:.3px}
-.disclaimer-bar{text-align:center;font-size:12px;color:var(--gray-400);margin-top:28px;line-height:1.5}
+.prov-card h4{font-size:16px;font-weight:700;color:var(--f9);margin-bottom:4px}
+.prov-card span{font-size:13px;color:var(--g6);font-weight:600}
+.disclaimer-bar{text-align:center;font-size:12px;color:var(--f4);margin-top:28px}
 
-/* ============================================
-   WHY CHOOSE — 6 CARDS
-   ============================================ */
 .cards-6{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.why-card{
-  padding:28px 24px;border:1px solid var(--gray-200);border-radius:var(--radius);
-  background:var(--white);transition:all .35s var(--ease-out-expo);
-}
-.why-card:hover{border-color:var(--green-500);box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.why-card .wicon{
-  width:44px;height:44px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;margin-bottom:14px;transition:var(--t);
-}
+.why-card{padding:28px 24px;border:1px solid var(--f2);border-radius:var(--rad);background:var(--w);transition:all .35s var(--ease)}
+.why-card:hover{border-color:var(--g5);box-shadow:var(--s2);transform:translateY(-4px)}
+.why-card .wicon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;transition:var(--t)}
 .why-card:hover .wicon{transform:scale(1.15) rotate(-6deg)}
-.why-card h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
-.why-card p{font-size:13px;color:var(--gray-500);line-height:1.6}
+.why-card h4{font-size:16px;font-weight:700;color:var(--f9);margin-bottom:6px}
+.why-card p{font-size:13px;color:var(--f5);line-height:1.6}
 
-/* ============================================
-   CTA SECTION
-   ============================================ */
-.cta-section{
-  background:var(--white);border-top:1px solid var(--gray-100);
-  padding:72px 0;text-align:center;position:relative;overflow:hidden;
-}
-.cta-section::before{
-  content:'';position:absolute;width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,var(--green-50) 0%,transparent 70%);
-  top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;
-}
+/* Testimonials */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.test-card{background:var(--w);border:1px solid var(--f2);border-radius:var(--rl);padding:28px;transition:all .35s var(--ease);position:relative}
+.test-card:hover{border-color:var(--g5);box-shadow:var(--s2);transform:translateY(-4px)}
+.test-card .stars{color:var(--a5);font-size:15px;letter-spacing:2px;margin-bottom:14px}
+.test-card .quote{font-size:14px;color:var(--f6);line-height:1.7;font-style:italic;margin-bottom:18px}
+.test-card .author{display:flex;align-items:center;gap:12px}
+.test-card .avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--g6),var(--b6));display:flex;align-items:center;justify-content:center;color:var(--w);font-weight:700;font-size:15px;flex-shrink:0}
+.test-card .aname{font-weight:600;font-size:14px;color:var(--f9)}
+.test-card .arole{font-size:12px;color:var(--f4)}
+
+/* Stats bar */
+.stats-bar{background:var(--f9);padding:40px 0;text-align:center}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat-item .sv{font-family:'Source Serif 4',Georgia,serif;font-size:32px;font-weight:800;color:var(--g5)}
+.stat-item .sl{font-size:13px;color:rgba(255,255,255,.5);margin-top:2px}
+
+/* CTA */
+.cta-section{background:var(--w);border-top:1px solid var(--f1);padding:72px 0;text-align:center;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,var(--g0) 0%,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
 .cta-section .container{position:relative;z-index:1}
-.cta-section h2{
-  font-family:'Source Serif 4',Georgia,serif;font-size:clamp(24px,3vw,36px);
-  font-weight:700;color:var(--gray-900);margin-bottom:12px;
-}
-.cta-section>.container>p{font-size:15px;color:var(--gray-500);max-width:520px;margin:0 auto 28px}
-.cta-phone{
-  font-family:'Source Serif 4',Georgia,serif;font-size:34px;font-weight:700;
-  color:var(--green-600);display:block;margin-bottom:8px;transition:var(--t);
-}
-.cta-phone:hover{color:var(--green-700);transform:scale(1.04);letter-spacing:.5px}
-.cta-hours{font-size:13px;color:var(--gray-400)}
+.cta-section h2{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(24px,3vw,36px);font-weight:700;color:var(--f9);margin-bottom:12px}
+.cta-section>.container>p{font-size:15px;color:var(--f5);max-width:520px;margin:0 auto 28px}
+.cta-phone{font-family:'Source Serif 4',Georgia,serif;font-size:34px;font-weight:700;color:var(--g6);display:block;margin-bottom:8px;transition:var(--t)}
+.cta-phone:hover{color:var(--g7);transform:scale(1.04)}
+.cta-hours{font-size:13px;color:var(--f4)}
 .cta-buttons{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
 
-/* ============================================
-   FOOTER
-   ============================================ */
-.footer{background:var(--gray-900);color:rgba(255,255,255,0.65);padding:60px 0 0}
-.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
-.footer-brand .logo{margin-bottom:12px}
-.footer-brand>p{font-size:13px;line-height:1.6;color:rgba(255,255,255,0.45);margin-bottom:16px;max-width:260px}
-.footer-contact{font-size:13px;margin-bottom:6px}
-.footer-contact a{color:var(--green-500);transition:var(--t)}
-.footer-contact a:hover{color:#00E676}
-.footer h5{font-size:14px;font-weight:700;color:var(--white);margin-bottom:14px}
-.footer ul{list-style:none}
-.footer ul li{margin-bottom:6px}
-.footer ul a{font-size:13px;color:rgba(255,255,255,0.45);transition:var(--t)}
-.footer ul a:hover{color:var(--green-500);padding-left:4px}
-.footer-disc{border-top:1px solid rgba(255,255,255,0.08);padding:20px 0}
-.footer-disc p{font-size:11px;color:rgba(255,255,255,0.3);line-height:1.5;margin-bottom:4px}
-.footer-bottom{
-  border-top:1px solid rgba(255,255,255,0.08);padding:16px 0;
-  display:flex;justify-content:space-between;align-items:center;
-  font-size:12px;color:rgba(255,255,255,0.35);
-}
-.footer-bottom a{color:rgba(255,255,255,0.4);margin-left:16px;transition:var(--t)}
-.footer-bottom a:hover{color:var(--green-500)}
+/* Subpages */
+.page-banner{background:var(--f50);border-bottom:1px solid var(--f2);padding:52px 0;text-align:center}
+.page-banner h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;color:var(--f9);margin-bottom:8px;animation:fadeUp .5s var(--ease) both}
+.page-banner p{font-size:15px;color:var(--f5);max-width:540px;margin:0 auto;animation:fadeUp .5s var(--ease) .1s both}
 
-/* ============================================
-   SUBPAGE PIECES
-   ============================================ */
-.page-banner{
-  background:var(--gray-50);border-bottom:1px solid var(--gray-200);
-  padding:52px 0;text-align:center;
-}
-.page-banner h1{
-  font-family:'Source Serif 4',Georgia,serif;
-  font-size:clamp(26px,3.5vw,40px);font-weight:700;color:var(--gray-900);
-  margin-bottom:8px;animation:fadeUp .5s var(--ease-out-expo) both;
-}
-.page-banner p{font-size:15px;color:var(--gray-500);max-width:540px;margin:0 auto;animation:fadeUp .5s var(--ease-out-expo) .1s both}
-
-/* Table */
-.table-wrap{overflow-x:auto;margin-top:32px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
-.cmp-table{width:100%;border-collapse:collapse;background:var(--white)}
-.cmp-table th{background:var(--green-600);color:var(--white);padding:14px 18px;text-align:left;font-size:13px;font-weight:600}
-.cmp-table td{padding:13px 18px;font-size:14px;color:var(--gray-700);border-bottom:1px solid var(--gray-100)}
+/* Tables */
+.table-wrap{overflow-x:auto;margin-top:32px;border-radius:var(--rad);overflow:hidden;box-shadow:var(--s1)}
+.cmp-table{width:100%;border-collapse:collapse;background:var(--w)}
+.cmp-table th{background:var(--g6);color:var(--w);padding:14px 18px;text-align:left;font-size:13px;font-weight:600}
+.cmp-table td{padding:13px 18px;font-size:14px;color:var(--f7);border-bottom:1px solid var(--f1)}
 .cmp-table tbody tr:last-child td{border-bottom:none}
-.cmp-table tbody tr{transition:var(--t)}
-.cmp-table tbody tr:hover{background:var(--green-50)}
+.cmp-table tbody tr{transition:var(--t)}.cmp-table tbody tr:hover{background:var(--g0)}
 
 /* Deals */
 .deals-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.deal{
-  background:var(--white);border:1px solid var(--gray-200);
-  border-radius:var(--radius-lg);padding:28px;
-  transition:all .35s var(--ease-out-expo);position:relative;overflow:hidden;
-}
-.deal::before{
-  content:'';position:absolute;top:0;left:0;bottom:0;width:4px;
-  background:var(--green-500);transform:scaleY(0);transform-origin:top;
-  transition:transform .4s var(--ease-out-expo);
-}
+.deal{background:var(--w);border:1px solid var(--f2);border-radius:var(--rl);padding:28px;transition:all .35s var(--ease);position:relative;overflow:hidden}
+.deal::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--g5);transform:scaleY(0);transform-origin:top;transition:transform .4s var(--ease)}
 .deal:hover::before{transform:scaleY(1)}
-.deal:hover{border-color:var(--green-500);box-shadow:var(--shadow-lg);transform:translateY(-4px)}
-.deal-tag{
-  position:absolute;top:0;right:20px;background:var(--red-500);color:var(--white);
-  font-size:11px;font-weight:700;padding:4px 10px;border-radius:0 0 6px 6px;
-  text-transform:uppercase;letter-spacing:.3px;
-}
-.deal h3{font-size:17px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
-.deal .amount{font-family:'Source Serif 4',Georgia,serif;font-size:22px;font-weight:700;color:var(--green-600);margin-bottom:8px}
-.deal p{font-size:13px;color:var(--gray-500);line-height:1.6}
+.deal:hover{border-color:var(--g5);box-shadow:var(--s3);transform:translateY(-4px)}
+.deal-tag{position:absolute;top:0;right:20px;background:var(--r5);color:var(--w);font-size:11px;font-weight:700;padding:4px 10px;border-radius:0 0 6px 6px;text-transform:uppercase}
+.deal h3{font-size:17px;font-weight:700;color:var(--f9);margin-bottom:6px}
+.deal .amount{font-family:'Source Serif 4',Georgia,serif;font-size:22px;font-weight:700;color:var(--g6);margin-bottom:8px}
+.deal p{font-size:13px;color:var(--f5);line-height:1.6}
 
 /* Coverage */
 .cov-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.cov-card{
-  background:var(--white);border:1px solid var(--gray-200);
-  border-radius:var(--radius-lg);padding:28px;
-  transition:all .35s var(--ease-out-expo);
-}
-.cov-card:hover{border-color:var(--green-500);box-shadow:var(--shadow-lg);transform:translateY(-6px)}
+.cov-card{background:var(--w);border:1px solid var(--f2);border-radius:var(--rl);padding:28px;transition:all .35s var(--ease)}
+.cov-card:hover{border-color:var(--g5);box-shadow:var(--s3);transform:translateY(-6px)}
 .cov-card .cov-emoji{font-size:38px;margin-bottom:12px;display:block;transition:var(--t)}
 .cov-card:hover .cov-emoji{transform:scale(1.2) rotate(-8deg)}
-.cov-card h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
-.cov-card p{font-size:13px;color:var(--gray-500);line-height:1.6;margin-bottom:14px}
+.cov-card h4{font-size:16px;font-weight:700;color:var(--f9);margin-bottom:6px}
+.cov-card p{font-size:13px;color:var(--f5);line-height:1.6;margin-bottom:14px}
 
-/* Connect */
-.connect-hero{text-align:center;padding:52px 0 40px;background:var(--gray-50);border-bottom:1px solid var(--gray-200)}
-.connect-hero h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(26px,3.5vw,40px);font-weight:700;color:var(--gray-900);margin-bottom:8px;animation:fadeUp .5s var(--ease-out-expo) both}
-.connect-hero>p{font-size:15px;color:var(--gray-500);max-width:540px;margin:0 auto;animation:fadeUp .5s var(--ease-out-expo) .1s both}
-.connect-phone-block{text-align:center;padding:56px 0;background:var(--white);border-bottom:1px solid var(--gray-100)}
-.connect-phone-block .phone-icon{
-  width:72px;height:72px;border-radius:20px;
-  background:var(--green-50);border:2px solid var(--green-100);
-  display:flex;align-items:center;justify-content:center;
-  font-size:34px;margin:0 auto 20px;
-  animation:float 4s ease-in-out infinite;
-}
-.connect-phone-block h2{
-  font-family:'Source Serif 4',Georgia,serif;
-  font-size:clamp(20px,2.5vw,28px);font-weight:700;
-  color:var(--gray-900);margin-bottom:16px;
-}
-.connect-phone-num{
-  font-family:'Source Serif 4',Georgia,serif;
-  font-size:clamp(32px,5vw,48px);font-weight:800;
-  color:var(--green-600);display:block;margin-bottom:10px;
-  transition:var(--t);
-}
-.connect-phone-num:hover{color:var(--green-700);transform:scale(1.03);letter-spacing:.5px}
-.connect-phone-block .hours{font-size:14px;color:var(--gray-400);margin-bottom:24px}
-.connect-phone-block .subtext{font-size:15px;color:var(--gray-500);max-width:460px;margin:0 auto 28px;line-height:1.7}
-.connect-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
-.connect-step{text-align:center;padding:28px 20px;border:1px solid var(--gray-200);border-radius:var(--radius-lg);background:var(--white);transition:all .35s var(--ease-out-expo)}
-.connect-step:hover{border-color:var(--green-500);box-shadow:var(--shadow-md);transform:translateY(-4px)}
-.connect-step .step-num{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--green-600);color:var(--white);
-  display:flex;align-items:center;justify-content:center;
-  font-size:16px;font-weight:700;margin:0 auto 14px;
-}
-.connect-step h4{font-size:16px;font-weight:700;color:var(--gray-900);margin-bottom:6px}
-.connect-step p{font-size:13px;color:var(--gray-500);line-height:1.6}
-.connect-form-section{max-width:560px;margin:0 auto}
-.connect-form-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:36px}
-.connect-form-card h3{font-family:'Source Serif 4',Georgia,serif;font-size:22px;font-weight:700;margin-bottom:8px;color:var(--gray-900)}
-.connect-form-card>p{font-size:14px;color:var(--gray-500);margin-bottom:24px;line-height:1.6}
-.connect-info-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px}
-.connect-info-card{text-align:center;padding:20px 16px;border:1px solid var(--gray-200);border-radius:var(--radius);transition:all .35s var(--ease-out-expo)}
-.connect-info-card:hover{border-color:var(--green-500);transform:translateY(-3px);box-shadow:var(--shadow-sm)}
-.connect-info-card .ci-icon{font-size:24px;margin-bottom:8px;display:block}
-.connect-info-card h4{font-size:14px;font-weight:700;color:var(--gray-900);margin-bottom:3px}
-.connect-info-card p{font-size:12px;color:var(--gray-500)}
-.connect-info-card a{color:var(--green-600);font-weight:600;font-size:13px}
-.form-card{background:var(--white);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:36px}
-.form-card h3{font-family:'Source Serif 4',Georgia,serif;font-size:22px;font-weight:700;margin-bottom:24px;color:var(--gray-900)}
-.field{margin-bottom:18px}
-.field label{display:block;font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:5px}
-.field input,.field select,.field textarea{
-  width:100%;padding:11px 14px;border:1.5px solid var(--gray-200);
-  border-radius:8px;font-size:14px;font-family:inherit;
-  color:var(--gray-800);transition:var(--t);background:var(--white);
-}
-.field input:focus,.field select:focus,.field textarea:focus{
-  outline:none;border-color:var(--green-500);box-shadow:0 0 0 4px rgba(0,122,61,0.08);
-}
-.field textarea{resize:vertical;min-height:80px}
-.info-panel{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius-lg);padding:32px}
-.info-panel h3{font-family:'Source Serif 4',Georgia,serif;font-size:20px;font-weight:700;color:var(--gray-900);margin-bottom:20px}
-.info-item{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--gray-200)}
-.info-item:last-child{border-bottom:none}
-.info-item .ii{width:36px;height:36px;border-radius:8px;background:var(--green-100);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;transition:var(--t)}
-.info-item:hover .ii{transform:scale(1.1) rotate(6deg)}
-.info-item h4{font-size:14px;font-weight:600;color:var(--gray-900);margin-bottom:1px}
-.info-item p{font-size:13px;color:var(--gray-500)}
-.info-item a{color:var(--green-600);font-weight:600}
+/* Connect - Form on top */
+.connect-form-top{background:var(--g0);border-bottom:1px solid var(--g1);padding:48px 0}
+.connect-form-wrap{max-width:600px;margin:0 auto}
+.connect-form-wrap h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(24px,3vw,34px);font-weight:700;color:var(--f9);text-align:center;margin-bottom:6px}
+.connect-form-wrap>p{text-align:center;font-size:15px;color:var(--f5);margin-bottom:28px}
+.connect-form-card{background:var(--w);border:1px solid var(--f2);border-radius:var(--rl);padding:32px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--f7);margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;padding:11px 14px;border:1.5px solid var(--f2);border-radius:8px;font-size:14px;font-family:inherit;color:var(--f8);transition:var(--t);background:var(--w)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--g5);box-shadow:0 0 0 4px rgba(0,122,61,.08)}
+.field textarea{resize:vertical;min-height:72px}
+.connect-below{padding:64px 0;text-align:center}
+.connect-below h2{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(22px,2.5vw,30px);font-weight:700;color:var(--f9);margin-bottom:12px}
+.connect-below>p{font-size:15px;color:var(--f5);margin-bottom:24px}
+.connect-info-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:600px;margin:0 auto}
+.ci-card{text-align:center;padding:20px 16px;border:1px solid var(--f2);border-radius:var(--rad);transition:all .35s var(--ease)}
+.ci-card:hover{border-color:var(--g5);transform:translateY(-3px);box-shadow:var(--s1)}
+.ci-card .ci-icon{font-size:24px;margin-bottom:8px;display:block}
+.ci-card h4{font-size:14px;font-weight:700;color:var(--f9);margin-bottom:3px}
+.ci-card p{font-size:12px;color:var(--f5)}.ci-card a{color:var(--g6);font-weight:600;font-size:13px}
+
+/* GEICO Sub pages */
+.geico-page-hero{background:linear-gradient(135deg,var(--g6),var(--g7));padding:56px 0;text-align:center;color:var(--w);position:relative;overflow:hidden}
+.geico-page-hero::before{content:'';position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23fff' fill-opacity='.04'%3E%3Ccircle cx='30' cy='30' r='1.5'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.geico-page-hero .container{position:relative;z-index:1}
+.geico-page-hero .g-emoji{font-size:56px;margin-bottom:12px;display:block;animation:float 3s ease-in-out infinite}
+.geico-page-hero h1{font-family:'Source Serif 4',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:10px}
+.geico-page-hero p{font-size:16px;color:rgba(255,255,255,.8);max-width:560px;margin:0 auto}
+.geico-content{padding:64px 0}
+.geico-features{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px}
+.gf-card{display:flex;gap:14px;padding:20px;border:1px solid var(--f2);border-radius:var(--rad);background:var(--w);transition:all .35s var(--ease)}
+.gf-card:hover{border-color:var(--g5);box-shadow:var(--s2);transform:translateY(-3px)}
+.gf-card .gf-icon{width:44px;height:44px;border-radius:12px;background:var(--g0);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;transition:var(--t)}
+.gf-card:hover .gf-icon{transform:scale(1.1) rotate(-6deg)}
+.gf-card h4{font-size:15px;font-weight:700;color:var(--f9);margin-bottom:4px}
+.gf-card p{font-size:13px;color:var(--f5);line-height:1.5}
 
 /* FAQ */
 .faq-list{max-width:720px;margin:0 auto}
-.faq-item{border:1px solid var(--gray-200);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;transition:all .3s ease}
-.faq-item.open{border-color:var(--green-500);box-shadow:0 0 0 3px rgba(0,122,61,0.06)}
-.faq-q{
-  padding:18px 20px;display:flex;justify-content:space-between;align-items:center;
-  cursor:pointer;font-size:15px;font-weight:600;color:var(--gray-800);
-  background:var(--white);transition:var(--t);
-}
-.faq-q:hover{background:var(--gray-50)}
-.faq-q .toggle{
-  width:26px;height:26px;border-radius:50%;background:var(--green-50);
-  color:var(--green-600);display:flex;align-items:center;justify-content:center;
-  font-size:17px;flex-shrink:0;transition:all .35s var(--ease-spring);
-}
-.faq-item.open .faq-q .toggle{background:var(--green-600);color:var(--white);transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease-out-expo)}
-.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--gray-500);line-height:1.7}
+.faq-item{border:1px solid var(--f2);border-radius:var(--rad);margin-bottom:10px;overflow:hidden;transition:all .3s}
+.faq-item.open{border-color:var(--g5);box-shadow:0 0 0 3px rgba(0,122,61,.06)}
+.faq-q{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:15px;font-weight:600;color:var(--f8);background:var(--w);transition:var(--t)}
+.faq-q:hover{background:var(--f50)}
+.faq-q .toggle{width:26px;height:26px;border-radius:50%;background:var(--g0);color:var(--g6);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;transition:all .35s var(--spring)}
+.faq-item.open .faq-q .toggle{background:var(--g6);color:var(--w);transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s var(--ease)}
+.faq-a-inner{padding:0 20px 18px;font-size:14px;color:var(--f5);line-height:1.7}
 
-/* ============================================
-   POPUP
-   ============================================ */
-.popup-bg{
-  position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
-  z-index:10000;display:flex;align-items:center;justify-content:center;
-  opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px;
-}
+/* POPUP — highly animated */
+.popup-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(6px);z-index:10000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;padding:20px}
 .popup-bg.show{opacity:1;visibility:visible}
-.popup-box{
-  background:var(--white);border-radius:var(--radius-xl);
-  max-width:460px;width:100%;overflow:hidden;
-  transform:scale(0.9) translateY(24px);
-  transition:transform .4s var(--ease-spring);
-  box-shadow:var(--shadow-xl);
-}
-.popup-bg.show .popup-box{transform:scale(1) translateY(0)}
-.popup-top{
-  background:linear-gradient(135deg,var(--green-600),var(--green-700));
-  padding:28px 28px 36px;position:relative;color:var(--white);
-}
-.popup-top::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:16px;background:var(--white);border-radius:16px 16px 0 0}
-.popup-close{
-  position:absolute;top:12px;right:12px;width:28px;height:28px;border-radius:50%;
-  background:rgba(255,255,255,0.15);border:none;color:white;font-size:18px;
-  display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--t);
-}
-.popup-close:hover{background:rgba(255,255,255,0.3);transform:rotate(90deg)}
-.popup-top .emoji{font-size:42px;margin-bottom:8px;display:block;animation:float 3s ease-in-out infinite}
-.popup-top h3{font-family:'Source Serif 4',Georgia,serif;font-size:22px;font-weight:700}
-.popup-top p{font-size:13px;color:rgba(255,255,255,0.75);margin-top:4px}
+.popup-box{background:var(--w);border-radius:24px;max-width:480px;width:100%;overflow:hidden;transform:scale(.5) translateY(40px);transition:transform .5s var(--spring);box-shadow:0 30px 80px rgba(0,0,0,.25)}
+.popup-bg.show .popup-box{animation:popBounce .6s var(--ease) both}
+/* Rings */
+.popup-top{background:linear-gradient(135deg,var(--g6),var(--g7));padding:32px 32px 42px;position:relative;color:var(--w);overflow:hidden}
+.popup-top::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:20px;background:var(--w);border-radius:20px 20px 0 0}
+.popup-rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.popup-ring{position:absolute;border:2px solid rgba(255,255,255,.15);border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%)}
+.popup-bg.show .popup-ring{animation:ringPulse 2s ease-out infinite}
+.popup-ring:nth-child(1){width:80px;height:80px;animation-delay:0s}
+.popup-ring:nth-child(2){width:120px;height:120px;animation-delay:.4s}
+.popup-ring:nth-child(3){width:160px;height:160px;animation-delay:.8s}
+/* Confetti */
+.popup-confetti{position:absolute;top:0;left:0;right:0;height:100%;overflow:hidden;pointer-events:none}
+.popup-confetti span{position:absolute;top:-10px;width:8px;height:8px;border-radius:2px;animation:confetti 2.5s ease-in infinite}
+.popup-confetti span:nth-child(1){left:10%;background:#FFD700;animation-delay:0s}
+.popup-confetti span:nth-child(2){left:25%;background:#FF6B6B;animation-delay:.3s;width:6px;height:10px}
+.popup-confetti span:nth-child(3){left:40%;background:#4ECDC4;animation-delay:.6s}
+.popup-confetti span:nth-child(4){left:55%;background:#FFE66D;animation-delay:.2s;width:10px;height:6px}
+.popup-confetti span:nth-child(5){left:70%;background:#A8E6CF;animation-delay:.5s}
+.popup-confetti span:nth-child(6){left:85%;background:#FF8A80;animation-delay:.8s;width:6px;height:8px}
+.popup-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);border:none;color:white;font-size:18px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--t);z-index:5}
+.popup-close:hover{background:rgba(255,255,255,.3);transform:rotate(90deg) scale(1.1)}
+.popup-top .p-emoji{font-size:48px;margin-bottom:10px;display:block;position:relative;z-index:2;animation:float 3s ease-in-out infinite}
+.popup-top h3{font-family:'Source Serif 4',Georgia,serif;font-size:24px;font-weight:800;position:relative;z-index:2}
+.popup-top .p-sub{font-size:13px;color:rgba(255,255,255,.75);margin-top:4px;position:relative;z-index:2}
+/* Progress bar */
+.popup-progress{height:4px;background:rgba(0,122,61,.15);margin:0 28px;border-radius:4px;margin-top:-2px;overflow:hidden}
+.popup-progress-fill{height:100%;background:var(--g6);border-radius:4px;width:0}
+.popup-bg.show .popup-progress-fill{animation:progressFill 8s linear both}
 .popup-body{padding:20px 28px 28px}
-.popup-feat{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--gray-100)}
+.popup-feat{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--f1)}
 .popup-feat:last-of-type{border-bottom:none}
-.popup-feat .pf-icon{
-  width:36px;height:36px;border-radius:8px;background:var(--green-50);
-  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
-}
-.popup-feat h4{font-size:14px;font-weight:600;color:var(--gray-900);margin-bottom:1px}
-.popup-feat p{font-size:12px;color:var(--gray-500);line-height:1.5}
-.popup-btns{display:flex;gap:10px;margin-top:18px}
+.popup-feat .pf-icon{width:40px;height:40px;border-radius:10px;background:var(--g0);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:var(--t)}
+.popup-feat:hover .pf-icon{transform:scale(1.1) rotate(8deg)}
+.popup-bg.show .popup-feat:nth-child(1){animation:slideUp .4s var(--ease) .2s both}
+.popup-bg.show .popup-feat:nth-child(2){animation:slideUp .4s var(--ease) .35s both}
+.popup-bg.show .popup-feat:nth-child(3){animation:slideUp .4s var(--ease) .5s both}
+.popup-bg.show .popup-feat:nth-child(4){animation:slideUp .4s var(--ease) .65s both}
+.popup-feat h4{font-size:14px;font-weight:700;color:var(--f9);margin-bottom:2px}
+.popup-feat p{font-size:12px;color:var(--f5);line-height:1.5}
+.popup-stars{display:flex;gap:4px;margin:16px 0 4px}
+.popup-stars span{font-size:22px;display:inline-block}
+.popup-bg.show .popup-stars span:nth-child(1){animation:starPop .3s var(--spring) .8s both}
+.popup-bg.show .popup-stars span:nth-child(2){animation:starPop .3s var(--spring) .9s both}
+.popup-bg.show .popup-stars span:nth-child(3){animation:starPop .3s var(--spring) 1s both}
+.popup-bg.show .popup-stars span:nth-child(4){animation:starPop .3s var(--spring) 1.1s both}
+.popup-bg.show .popup-stars span:nth-child(5){animation:starPop .3s var(--spring) 1.2s both}
+.popup-rating-text{font-size:12px;color:var(--f4);margin-bottom:16px}
+.popup-btns{display:flex;gap:10px;margin-top:16px}
 .popup-btns .btn{flex:1}
+.popup-bg.show .popup-btns{animation:slideUp .4s var(--ease) .8s both}
+.popup-shimmer{position:relative;overflow:hidden}.popup-shimmer::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.3) 50%,transparent 70%);animation:shimmerSlide 2s ease-in-out 1.5s both}
 
-/* ============================================
-   SCROLL TOP
-   ============================================ */
-.scroll-top{
-  position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:12px;
-  background:var(--green-600);color:var(--white);border:none;font-size:18px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:var(--shadow-md);z-index:999;
-  opacity:0;visibility:hidden;transform:translateY(8px) scale(0.9);transition:var(--t);
-}
+/* Footer */
+.footer{background:var(--f9);color:rgba(255,255,255,.65);padding:60px 0 0}
+.footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
+.footer-brand .logo{margin-bottom:12px}
+.footer-brand>p{font-size:13px;line-height:1.6;color:rgba(255,255,255,.45);margin-bottom:16px;max-width:260px}
+.footer-contact{font-size:13px;margin-bottom:6px}
+.footer-contact a{color:var(--g5);transition:var(--t)}.footer-contact a:hover{color:#00E676}
+.footer h5{font-size:14px;font-weight:700;color:var(--w);margin-bottom:14px}
+.footer ul{list-style:none}.footer ul li{margin-bottom:6px}
+.footer ul a{font-size:13px;color:rgba(255,255,255,.45);transition:var(--t)}.footer ul a:hover{color:var(--g5);padding-left:4px}
+.footer-disc{border-top:1px solid rgba(255,255,255,.08);padding:20px 0}
+.footer-disc p{font-size:11px;color:rgba(255,255,255,.3);line-height:1.5;margin-bottom:4px}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:16px 0;display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.35)}
+.footer-bottom a{color:rgba(255,255,255,.4);margin-left:16px;transition:var(--t)}.footer-bottom a:hover{color:var(--g5)}
+
+.scroll-top{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:12px;background:var(--g6);color:var(--w);border:none;font-size:18px;display:flex;align-items:center;justify-content:center;box-shadow:var(--s2);z-index:999;opacity:0;visibility:hidden;transform:translateY(8px) scale(.9);transition:var(--t)}
 .scroll-top.show{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
-.scroll-top:hover{background:var(--green-700);transform:translateY(-3px) scale(1.05)}
+.scroll-top:hover{background:var(--g7);transform:translateY(-3px) scale(1.05)}
 
-/* ============================================
-   CURSOR TRAIL (subtle)
-   ============================================ */
-.cursor-dot{
-  position:fixed;width:8px;height:8px;border-radius:50%;
-  background:var(--green-500);opacity:0;pointer-events:none;
-  z-index:99999;transition:opacity .3s;mix-blend-mode:multiply;
-}
-.cursor-dot.show{opacity:0.3}
-
-/* ============================================
-   RESPONSIVE
-   ============================================ */
-@media(max-width:1024px){
-  .cards-4{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:768px){
-  .nav{display:none}.mobile-btn{display:flex}.header-phone{display:none}
-  .cards-3,.cards-6,.deals-grid,.cov-grid{grid-template-columns:1fr}
-  .cards-4{grid-template-columns:repeat(2,1fr)}
-  .connect-grid,.connect-steps{grid-template-columns:1fr}
-  .connect-info-row{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .hero-actions{flex-direction:column;align-items:center}
-  .hero-stats{gap:28px;flex-wrap:wrap}
-  .section{padding:52px 0}
-  .footer-bottom{flex-direction:column;gap:8px;text-align:center}
-  .cursor-dot{display:none}
-}
-@media(max-width:480px){
-  .cards-4{grid-template-columns:1fr}
-  .hero-stats{flex-direction:column;gap:16px}
-}
+/* Responsive */
+@media(max-width:1024px){.cards-4{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:768px){.nav{display:none}.mobile-btn{display:flex}.header-phone{display:none}.cards-3,.cards-6,.deals-grid,.cov-grid,.test-grid,.geico-features{grid-template-columns:1fr}.cards-4{grid-template-columns:repeat(2,1fr)}.connect-info-row{grid-template-columns:1fr}.stats-row{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}.hero-actions{flex-direction:column;align-items:center}.hero-stats{gap:28px;flex-wrap:wrap}.section{padding:52px 0}.footer-bottom{flex-direction:column;gap:8px;text-align:center}}
+@media(max-width:480px){.cards-4,.stats-row{grid-template-columns:1fr}.hero-stats{flex-direction:column;gap:16px}}
 </style>
 </head>
 <body>
 
-<!-- Cursor trail dot -->
-<div class="cursor-dot" id="cursorDot"></div>
-
-<!-- ==================== HEADER ==================== -->
+<!-- HEADER -->
 <header class="header" id="siteHeader">
   <div class="container header-inner">
     <a href="#" class="logo" onclick="go('home')">
-      <div class="logo-mark">
-        <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M10 28V14L14 12.5V27L20 18L26 27V12.5L30 14V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <circle cx="20" cy="9" r="3" fill="#00E676"/>
-        </svg>
-      </div>
+      <div class="logo-mark"><svg viewBox="0 0 40 40" fill="none"><path d="M10 28V14L14 12.5V27L20 18L26 27V12.5L30 14V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9" r="3" fill="#00E676"/></svg></div>
       <span class="logo-text">GEICO<span>-Pro</span></span>
     </a>
     <div class="nav">
@@ -656,12 +349,12 @@ button{font-family:inherit;cursor:pointer}
       <a href="#" data-page="deals" onclick="go('deals')">Deals</a>
       <a href="#" data-page="coverage" onclick="go('coverage')">Coverage</a>
       <div class="nav-drop">
-        <button class="nav-trigger">Products ▾</button>
+        <button class="nav-trigger">GEICO ▾</button>
         <div class="nav-drop-menu">
-          <a href="#" onclick="go('coverage')"><span class="ico" style="background:var(--green-50)">🚗</span> Auto Insurance</a>
-          <a href="#" onclick="go('coverage')"><span class="ico" style="background:var(--blue-100)">🏠</span> Homeowners</a>
-          <a href="#" onclick="go('coverage')"><span class="ico" style="background:#FFF8E7">🏍️</span> Motorcycle</a>
-          <a href="#" onclick="go('coverage')"><span class="ico" style="background:#F3E8FF">☂️</span> Umbrella</a>
+          <a href="#" onclick="go('geico-auto')"><span class="ico" style="background:var(--g0)">🚗</span> Auto Insurance</a>
+          <a href="#" onclick="go('geico-home')"><span class="ico" style="background:var(--b1)">🏠</span> Homeowners</a>
+          <a href="#" onclick="go('geico-moto')"><span class="ico" style="background:#FFF8E7">🏍️</span> Motorcycle</a>
+          <a href="#" onclick="go('geico-umbrella')"><span class="ico" style="background:#F3E8FF">☂️</span> Umbrella</a>
         </div>
       </div>
       <a href="#" data-page="faq" onclick="go('faq')">FAQ</a>
@@ -684,13 +377,15 @@ button{font-family:inherit;cursor:pointer}
       <a href="#" onclick="go('connect');closeMobile()">Connect Me</a>
       <a href="#" onclick="go('deals');closeMobile()">Deals</a>
       <a href="#" onclick="go('coverage');closeMobile()">Coverage</a>
+      <a href="#" onclick="go('geico-auto');closeMobile()">GEICO Auto</a>
+      <a href="#" onclick="go('geico-home');closeMobile()">GEICO Home</a>
+      <a href="#" onclick="go('geico-moto');closeMobile()">GEICO Motorcycle</a>
+      <a href="#" onclick="go('geico-umbrella');closeMobile()">GEICO Umbrella</a>
       <a href="#" onclick="go('faq');closeMobile()">FAQ</a>
-      <a href="tel:+18885240250" style="color:var(--green-600);font-weight:700;margin-top:10px">📞 (888) 524-0250</a>
-      <a href="#" class="btn btn-primary" style="margin-top:8px;text-align:center" onclick="go('connect');closeMobile()">Get a Free Quote</a>
+      <a href="tel:+18885240250" style="color:var(--g6);font-weight:700;margin-top:10px">📞 (888) 524-0250</a>
     </nav>
   </div>
 </div>
-
 
 <!-- ========================= HOME ========================= -->
 <div id="page-home" class="page active">
@@ -699,314 +394,301 @@ button{font-family:inherit;cursor:pointer}
       <div class="badge"><span class="dot"></span> Trusted by 15 Million+ Policyholders</div>
       <h1>Find Your Perfect <em>Insurance Coverage</em></h1>
       <p>Compare GEICO auto, home, renters, and life insurance products. Check availability in your area and connect with specialists for personalized guidance.</p>
-      <div class="hero-actions">
-        <a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call (888) 524-0250</a>
-        <a href="#" class="btn btn-outline btn-lg" onclick="go('compare')">Compare Plans →</a>
-      </div>
-      <div class="hero-search">
-        <input type="text" placeholder="Enter your ZIP code to check availability..." maxlength="5">
-        <button onclick="go('connect')">Search</button>
-      </div>
+      <div class="hero-actions"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call (888) 524-0250</a><a href="#" class="btn btn-outline btn-lg" onclick="go('compare')">Compare Plans →</a></div>
+      <div class="hero-search"><input type="text" placeholder="Enter your ZIP code to check availability..." maxlength="5"><button onclick="go('connect')">Search</button></div>
       <div class="hero-hours">Mon–Fri 9AM–6PM EST</div>
       <div class="hero-stats">
         <div class="hero-stat"><div class="hero-stat-value" data-target="500" data-prefix="$" data-suffix="+">$0+</div><div class="hero-stat-label">Avg. Annual Savings</div></div>
         <div class="hero-stat"><div class="hero-stat-value" data-target="15" data-suffix="M+">0M+</div><div class="hero-stat-label">Policyholders</div></div>
         <div class="hero-stat"><div class="hero-stat-value" data-target="85" data-suffix="+">0+</div><div class="hero-stat-label">Years of Service</div></div>
-        <div class="hero-stat"><div class="hero-stat-value" data-target="50" data-suffix=" States">0 States</div><div class="hero-stat-label">Available Nationwide</div></div>
+        <div class="hero-stat"><div class="hero-stat-value" data-target="50" data-suffix=" States">0 States</div><div class="hero-stat-label">Nationwide Coverage</div></div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head reveal"><h2>What We Help You Compare</h2><p>From basic auto coverage to full protection bundles, find the right insurance for your household.</p></div>
-      <div class="cards-3">
-        <div class="card reveal d1"><div class="card-icon" style="background:var(--green-50)">🚗</div><h3>Auto Insurance</h3><p>Compare coverage from liability-only to full protection. Find the right plan for your vehicle, driving habits, and budget.</p><a href="#" class="card-link" onclick="go('compare')">Learn More →</a></div>
-        <div class="card reveal d2"><div class="card-icon" style="background:var(--blue-100)">🏠</div><h3>Home & Renters</h3><p>Protect your home and belongings with homeowners, renters, or condo insurance. Coverage for every living situation.</p><a href="#" class="card-link" onclick="go('coverage')">Learn More →</a></div>
-        <div class="card reveal d3"><div class="card-icon" style="background:#FFF8E7">📦</div><h3>Bundles</h3><p>Save with multi-policy bundles. Combine auto with home, renters, or motorcycle insurance for significant discounts.</p><a href="#" class="card-link" onclick="go('deals')">Learn More →</a></div>
-      </div>
+  <section class="section"><div class="container">
+    <div class="section-head reveal"><h2>What We Help You Compare</h2><p>From basic auto coverage to full protection bundles, find the right insurance for your household.</p></div>
+    <div class="cards-3">
+      <div class="card reveal d1"><div class="card-icon" style="background:var(--g0)">🚗</div><h3>Auto Insurance</h3><p>Compare coverage from liability-only to full protection. Find the right plan for your vehicle, driving habits, and budget. GEICO serves over 15 million policyholders nationwide.</p><a href="#" class="card-link" onclick="go('geico-auto')">Learn More →</a></div>
+      <div class="card reveal d2"><div class="card-icon" style="background:var(--b1)">🏠</div><h3>Home & Renters</h3><p>Protect your home and belongings with homeowners, renters, or condo insurance. GEICO Insurance Agency shops multiple providers to find you the best rate.</p><a href="#" class="card-link" onclick="go('geico-home')">Learn More →</a></div>
+      <div class="card reveal d3"><div class="card-icon" style="background:#FFF8E7">📦</div><h3>Bundles & Discounts</h3><p>Save with multi-policy bundles. Combine auto with home, renters, or motorcycle insurance and unlock up to 25% in discounts on your total premium.</p><a href="#" class="card-link" onclick="go('deals')">Learn More →</a></div>
     </div>
-  </section>
+  </div></section>
 
-  <section class="section alt">
-    <div class="container">
-      <div class="section-head reveal"><h2>Insurance Products Available</h2><p>We help you understand GEICO's insurance products. Click to learn more about each.</p></div>
-      <div class="cards-4">
-        <div class="prov-card reveal d1" onclick="go('coverage')"><div class="prov-icon" style="background:var(--green-50)">🚗</div><h4>Auto Insurance</h4><span>View Coverage →</span></div>
-        <div class="prov-card reveal d2" onclick="go('coverage')"><div class="prov-icon" style="background:var(--blue-100)">🏠</div><h4>Homeowners</h4><span>View Coverage →</span></div>
-        <div class="prov-card reveal d3" onclick="go('coverage')"><div class="prov-icon" style="background:#FFF8E7">🔑</div><h4>Renters</h4><span>View Coverage →</span></div>
-        <div class="prov-card reveal d4" onclick="go('coverage')"><div class="prov-icon" style="background:#F3E8FF">🏍️</div><h4>Motorcycle</h4><span>View Coverage →</span></div>
-      </div>
-      <p class="disclaimer-bar">GEICO-Pro.com is an independent guidance service and is not affiliated with, endorsed by, or sponsored by GEICO.</p>
+  <section class="section alt"><div class="container">
+    <div class="section-head reveal"><h2>Insurance Products Available</h2><p>We help you understand GEICO's insurance products. Click to learn more about each.</p></div>
+    <div class="cards-4">
+      <div class="prov-card reveal d1" onclick="go('geico-auto')"><div class="prov-icon" style="background:var(--g0)">🚗</div><h4>Auto Insurance</h4><span>View Coverage →</span></div>
+      <div class="prov-card reveal d2" onclick="go('geico-home')"><div class="prov-icon" style="background:var(--b1)">🏠</div><h4>Homeowners</h4><span>View Coverage →</span></div>
+      <div class="prov-card reveal d3" onclick="go('geico-moto')"><div class="prov-icon" style="background:#FFF8E7">🏍️</div><h4>Motorcycle</h4><span>View Coverage →</span></div>
+      <div class="prov-card reveal d4" onclick="go('geico-umbrella')"><div class="prov-icon" style="background:#F3E8FF">☂️</div><h4>Umbrella</h4><span>View Coverage →</span></div>
     </div>
-  </section>
+    <p class="disclaimer-bar">GEICO-Pro.com is an independent guidance service and is not affiliated with, endorsed by, or sponsored by GEICO.</p>
+  </div></section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-head reveal"><h2>Why Choose GEICO-Pro.com?</h2><p>We are an independent guidance service dedicated to helping you find the right insurance solution.</p></div>
-      <div class="cards-6">
-        <div class="why-card reveal d1"><div class="wicon" style="background:var(--green-50)">🎯</div><h4>Independent Service</h4><p>We are not affiliated with GEICO. Get unbiased information and honest guidance on coverage options.</p></div>
-        <div class="why-card reveal d2"><div class="wicon" style="background:var(--blue-100)">🧑‍💼</div><h4>Expert Support</h4><p>Our specialists help you navigate options, check availability, and find the best fit for your needs.</p></div>
-        <div class="why-card reveal d3"><div class="wicon" style="background:#FFF8E7">⏰</div><h4>Save Time</h4><p>Get all the information about GEICO's insurance products in one place instead of searching multiple sources.</p></div>
-        <div class="why-card reveal d4"><div class="wicon" style="background:#F3E8FF">🤝</div><h4>No Pressure</h4><p>We provide information and guidance. You make the final decision on what works best for you.</p></div>
-        <div class="why-card reveal d5"><div class="wicon" style="background:#FFF0F0">💬</div><h4>Personal Service</h4><p>Talk to real people who understand insurance options and can answer your questions clearly.</p></div>
-        <div class="why-card reveal d6"><div class="wicon" style="background:#E8F8FF">⚡</div><h4>Quick Answers</h4><p>Get pricing and coverage information fast. Our team is ready to help during business hours.</p></div>
-      </div>
+  <!-- Testimonials -->
+  <section class="section"><div class="container">
+    <div class="section-head reveal"><h2>What Our Customers Say</h2><p>Real customers who found their perfect insurance coverage through our guidance service.</p></div>
+    <div class="test-grid">
+      <div class="test-card reveal d1"><div class="stars">★★★★★</div><div class="quote">"GEICO-Pro made it incredibly easy to understand all my coverage options. The specialist I spoke with helped me save over $600 a year on my auto and home bundle!"</div><div class="author"><div class="avatar">MR</div><div><div class="aname">Michael R.</div><div class="arole">Auto & Home Customer, TX</div></div></div></div>
+      <div class="test-card reveal d2"><div class="stars">★★★★★</div><div class="quote">"I had no idea renters insurance was so affordable until I called. The team walked me through everything and I was covered the same day. Absolutely fantastic service!"</div><div class="author"><div class="avatar">SL</div><div><div class="aname">Sarah L.</div><div class="arole">Renters Insurance, NY</div></div></div></div>
+      <div class="test-card reveal d3"><div class="stars">★★★★★</div><div class="quote">"As a military veteran, I was thrilled to learn about GEICO's special military program. They helped me take advantage of discounts I didn't even know existed."</div><div class="author"><div class="avatar">JK</div><div><div class="aname">James K.</div><div class="arole">Military Program, VA</div></div></div></div>
     </div>
-  </section>
+  </div></section>
 
-  <section class="cta-section">
-    <div class="container">
-      <div class="reveal">
-        <h2>Ready to Find Your Perfect Coverage?</h2>
-        <p>Our specialists are standing by to help you compare options, check availability, and answer your questions.</p>
-        <a href="tel:+18885240250" class="cta-phone">(888) 524-0250</a>
-        <div class="cta-hours">Mon–Fri 9AM–6PM EST</div>
-        <div class="cta-buttons">
-          <a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call Now</a>
-          <a href="#" class="btn btn-outline btn-lg" onclick="go('connect')">Get a Free Quote →</a>
-        </div>
-      </div>
+  <!-- Stats -->
+  <div class="stats-bar"><div class="container"><div class="stats-row">
+    <div class="stat-item reveal d1"><div class="sv">$500+</div><div class="sl">Average Savings Per Year</div></div>
+    <div class="stat-item reveal d2"><div class="sv">97%</div><div class="sl">Customer Satisfaction</div></div>
+    <div class="stat-item reveal d3"><div class="sv">24/7</div><div class="sl">Claims Service</div></div>
+    <div class="stat-item reveal d4"><div class="sv">A++</div><div class="sl">AM Best Rating</div></div>
+  </div></div></div>
+
+  <section class="section"><div class="container">
+    <div class="section-head reveal"><h2>Why Choose GEICO-Pro.com?</h2><p>We are an independent guidance service dedicated to helping you find the right insurance solution.</p></div>
+    <div class="cards-6">
+      <div class="why-card reveal d1"><div class="wicon" style="background:var(--g0)">🎯</div><h4>Independent Service</h4><p>We are not affiliated with GEICO. Get unbiased information and honest guidance on coverage options.</p></div>
+      <div class="why-card reveal d2"><div class="wicon" style="background:var(--b1)">🧑‍💼</div><h4>Expert Support</h4><p>Our specialists help you navigate options, check availability, and find the best fit for your needs.</p></div>
+      <div class="why-card reveal d3"><div class="wicon" style="background:#FFF8E7">⏰</div><h4>Save Time</h4><p>Get all the information about GEICO's insurance products in one place instead of searching multiple sources.</p></div>
+      <div class="why-card reveal d4"><div class="wicon" style="background:#F3E8FF">🤝</div><h4>No Pressure</h4><p>We provide information and guidance. You make the final decision on what works best for you.</p></div>
+      <div class="why-card reveal d5"><div class="wicon" style="background:#FFF0F0">💬</div><h4>Personal Service</h4><p>Talk to real people who understand insurance options and can answer your questions clearly.</p></div>
+      <div class="why-card reveal d6"><div class="wicon" style="background:#E8F8FF">⚡</div><h4>Quick Answers</h4><p>Get pricing and coverage information fast. Our team is ready to help during business hours.</p></div>
     </div>
-  </section>
+  </div></section>
+
+  <!-- More testimonials -->
+  <section class="section alt"><div class="container">
+    <div class="section-head reveal"><h2>More Happy Customers</h2><p>Join thousands who have found the right coverage through GEICO-Pro.</p></div>
+    <div class="test-grid">
+      <div class="test-card reveal d1"><div class="stars">★★★★★</div><div class="quote">"Switching was painless. I bundled my car and condo insurance and saved a surprising amount. The phone agent was patient and thorough."</div><div class="author"><div class="avatar">DP</div><div><div class="aname">Diana P.</div><div class="arole">Bundle Customer, FL</div></div></div></div>
+      <div class="test-card reveal d2"><div class="stars">★★★★★</div><div class="quote">"I called expecting a sales pitch but got genuine help instead. They explained every coverage option and let me decide. Highly recommend!"</div><div class="author"><div class="avatar">RW</div><div><div class="aname">Robert W.</div><div class="arole">Auto Insurance, CA</div></div></div></div>
+      <div class="test-card reveal d3"><div class="stars">★★★★★</div><div class="quote">"The whole process took 15 minutes. Best part? I found out I qualified for the safe driver and multi-vehicle discounts. My premium dropped significantly."</div><div class="author"><div class="avatar">AL</div><div><div class="aname">Amanda L.</div><div class="arole">Multi-Vehicle, OH</div></div></div></div>
+    </div>
+  </div></section>
+
+  <section class="cta-section"><div class="container"><div class="reveal">
+    <h2>Ready to Find Your Perfect Coverage?</h2>
+    <p>Our specialists are standing by to help you compare options, check availability, and answer your questions.</p>
+    <a href="tel:+18885240250" class="cta-phone">(888) 524-0250</a>
+    <div class="cta-hours">Mon–Fri 9AM–6PM EST</div>
+    <div class="cta-buttons"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call Now</a><a href="#" class="btn btn-outline btn-lg" onclick="go('connect')">Get a Free Quote →</a></div>
+  </div></div></section>
 </div>
-
 
 <!-- ========================= COMPARE ========================= -->
 <div id="page-compare" class="page">
   <div class="page-banner"><div class="container"><h1>Compare GEICO Coverage Plans</h1><p>Side-by-side comparison of coverage options to help you find the right insurance fit.</p></div></div>
-  <section class="section">
-    <div class="container">
-      <div class="section-head reveal"><h2>Auto Insurance Comparison</h2><p>Compare auto coverage tiers and find the right level of protection.</p></div>
-      <div class="table-wrap reveal d1">
-        <table class="cmp-table"><thead><tr><th>Coverage Feature</th><th>Basic</th><th>Standard ⭐</th><th>Premium</th></tr></thead><tbody>
-          <tr><td><strong>Monthly Premium (avg.)</strong></td><td>~$46/mo</td><td>~$156/mo</td><td>~$210/mo</td></tr>
-          <tr><td>Bodily Injury Liability</td><td>State Minimum</td><td>100/300K</td><td>250/500K</td></tr>
-          <tr><td>Property Damage Liability</td><td>State Minimum</td><td>$100K</td><td>$250K</td></tr>
-          <tr><td>Collision Coverage</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Comprehensive Coverage</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Uninsured Motorist</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Medical Payments</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Roadside Assistance</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Rental Reimbursement</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Mechanical Breakdown</td><td>—</td><td>—</td><td>✅</td></tr>
-          <tr><td>Umbrella Add-on</td><td>—</td><td>—</td><td>✅</td></tr>
-          <tr><td>24/7 Claims Service</td><td>✅</td><td>✅</td><td>✅</td></tr>
-          <tr><td>GEICO Mobile App</td><td>✅</td><td>✅</td><td>✅</td></tr>
-        </tbody></table>
-      </div>
-      <div style="text-align:center;margin-top:36px" class="reveal d2"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call to Compare — (888) 524-0250</a></div>
-
-      <div class="section-head reveal" style="margin-top:72px"><h2>Property Insurance Comparison</h2><p>Compare renters, condo, and homeowners coverage side by side.</p></div>
-      <div class="table-wrap reveal d1">
-        <table class="cmp-table"><thead><tr><th>Coverage Feature</th><th>Renters</th><th>Condo</th><th>Homeowners</th></tr></thead><tbody>
-          <tr><td><strong>Starting Price</strong></td><td>~$12/mo</td><td>~$35/mo</td><td>~$80/mo</td></tr>
-          <tr><td>Personal Property</td><td>✅</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Liability Protection</td><td>✅</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Interior Coverage</td><td>—</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Dwelling Coverage</td><td>—</td><td>—</td><td>✅</td></tr>
-          <tr><td>Other Structures</td><td>—</td><td>—</td><td>✅</td></tr>
-          <tr><td>Loss of Use</td><td>✅</td><td>✅</td><td>✅</td></tr>
-          <tr><td>Multi-Policy Discount</td><td>✅</td><td>✅</td><td>✅</td></tr>
-        </tbody></table>
-      </div>
-    </div>
-  </section>
+  <section class="section"><div class="container">
+    <div class="section-head reveal"><h2>Auto Insurance Comparison</h2><p>Compare auto coverage tiers and find the right level of protection.</p></div>
+    <div class="table-wrap reveal d1"><table class="cmp-table"><thead><tr><th>Coverage Feature</th><th>Basic</th><th>Standard ⭐</th><th>Premium</th></tr></thead><tbody>
+      <tr><td><strong>Monthly Premium (avg.)</strong></td><td>~$46/mo</td><td>~$156/mo</td><td>~$210/mo</td></tr>
+      <tr><td>Bodily Injury Liability</td><td>State Min</td><td>100/300K</td><td>250/500K</td></tr><tr><td>Property Damage</td><td>State Min</td><td>$100K</td><td>$250K</td></tr>
+      <tr><td>Collision</td><td>—</td><td>✅</td><td>✅</td></tr><tr><td>Comprehensive</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Uninsured Motorist</td><td>—</td><td>✅</td><td>✅</td></tr><tr><td>Medical Payments</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Roadside Assistance</td><td>—</td><td>✅</td><td>✅</td></tr><tr><td>Rental Reimbursement</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Mechanical Breakdown</td><td>—</td><td>—</td><td>✅</td></tr><tr><td>Umbrella Add-on</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>24/7 Claims + App</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    </tbody></table></div>
+    <div style="text-align:center;margin-top:36px" class="reveal d2"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call to Compare — (888) 524-0250</a></div>
+    <div class="section-head reveal" style="margin-top:72px"><h2>Property Insurance Comparison</h2><p>Compare renters, condo, and homeowners coverage side by side.</p></div>
+    <div class="table-wrap reveal d1"><table class="cmp-table"><thead><tr><th>Feature</th><th>Renters</th><th>Condo</th><th>Homeowners</th></tr></thead><tbody>
+      <tr><td><strong>Starting Price</strong></td><td>~$12/mo</td><td>~$35/mo</td><td>~$80/mo</td></tr>
+      <tr><td>Personal Property</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>Liability</td><td>✅</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Interior Coverage</td><td>—</td><td>✅</td><td>✅</td></tr><tr><td>Dwelling</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>Loss of Use</td><td>✅</td><td>✅</td><td>✅</td></tr><tr><td>Multi-Policy Discount</td><td>✅</td><td>✅</td><td>✅</td></tr>
+    </tbody></table></div>
+  </div></section>
 </div>
-
 
 <!-- ========================= CONNECT ME ========================= -->
 <div id="page-connect" class="page">
-  <!-- Hero -->
-  <div class="connect-hero">
-    <div class="container">
+  <div class="connect-form-top">
+    <div class="connect-form-wrap">
       <h1>Connect With a Specialist</h1>
-      <p>Get personalized guidance on GEICO insurance options. Our team is here to help you find the right coverage.</p>
-    </div>
-  </div>
-
-  <!-- Big Phone CTA -->
-  <div class="connect-phone-block">
-    <div class="container">
-      <div class="reveal">
-        <div class="phone-icon">📞</div>
-        <h2>Speak With an Insurance Specialist</h2>
-        <p class="subtext">Our knowledgeable team can help you compare coverage options, check availability in your area, and answer any questions about GEICO insurance products.</p>
-        <a href="tel:+18885240250" class="connect-phone-num">(888) 524-0250</a>
-        <div class="hours">Mon–Fri 9AM–6PM EST</div>
-        <a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call Now — Free Consultation</a>
-      </div>
-
-      <!-- Steps -->
-      <div class="connect-steps">
-        <div class="connect-step reveal d1">
-          <div class="step-num">1</div>
-          <h4>Call Us</h4>
-          <p>Reach our team at (888) 524-0250 during business hours for immediate assistance.</p>
-        </div>
-        <div class="connect-step reveal d2">
-          <div class="step-num">2</div>
-          <h4>Tell Us Your Needs</h4>
-          <p>Share your coverage needs, budget, and any questions you have about GEICO insurance products.</p>
-        </div>
-        <div class="connect-step reveal d3">
-          <div class="step-num">3</div>
-          <h4>Get Connected</h4>
-          <p>We'll help you compare options and connect you with the right coverage for your situation.</p>
-        </div>
+      <p>Fill out the form below and a specialist will reach out during business hours. No obligation — just helpful guidance.</p>
+      <div class="connect-form-card">
+        <div class="field"><label>Full Name *</label><input type="text" placeholder="Enter your full name"></div>
+        <div class="field"><label>Phone Number *</label><input type="tel" placeholder="(555) 123-4567"></div>
+        <div class="field"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
+        <div class="field"><label>ZIP Code *</label><input type="text" placeholder="Enter ZIP code" maxlength="5"></div>
+        <div class="field"><label>Insurance Type</label><select><option>Auto Insurance</option><option>Homeowners</option><option>Renters</option><option>Motorcycle</option><option>Life Insurance</option><option>Bundle / Multiple</option><option>Other</option></select></div>
+        <div class="field"><label>Additional Notes</label><textarea placeholder="Tell us about your coverage needs..."></textarea></div>
+        <button class="btn btn-primary btn-lg" style="width:100%" onclick="alert('Thank you! A specialist will contact you shortly.')">Submit Request →</button>
       </div>
     </div>
   </div>
-
-  <!-- Form Section -->
-  <section class="section">
-    <div class="container">
-      <div class="connect-form-section">
-        <div class="connect-form-card reveal d1">
-          <h3>Prefer a Callback?</h3>
-          <p>Leave your details below and a specialist will reach out to you during business hours. No obligation — just helpful guidance.</p>
-          <div class="field"><label>Full Name *</label><input type="text" placeholder="Enter your full name"></div>
-          <div class="field"><label>Phone Number *</label><input type="tel" placeholder="(555) 123-4567"></div>
-          <div class="field"><label>Email Address</label><input type="email" placeholder="you@example.com"></div>
-          <div class="field"><label>ZIP Code *</label><input type="text" placeholder="Enter ZIP code" maxlength="5"></div>
-          <div class="field"><label>Insurance Type</label><select><option>Auto Insurance</option><option>Homeowners Insurance</option><option>Renters Insurance</option><option>Motorcycle Insurance</option><option>Life Insurance</option><option>Bundle / Multiple Policies</option><option>Other</option></select></div>
-          <div class="field"><label>Additional Notes</label><textarea placeholder="Tell us about your coverage needs..."></textarea></div>
-          <button class="btn btn-primary btn-lg" style="width:100%" onclick="alert('Thank you! A specialist will contact you shortly.')">Submit Request →</button>
-        </div>
-
-        <!-- Contact Info Cards -->
-        <div class="connect-info-row">
-          <div class="connect-info-card reveal d1">
-            <span class="ci-icon">📞</span>
-            <h4>Phone</h4>
-            <p><a href="tel:+18885240250">(888) 524-0250</a></p>
-          </div>
-          <div class="connect-info-card reveal d2">
-            <span class="ci-icon">📧</span>
-            <h4>Email</h4>
-            <p><a href="mailto:support@geico-pro.com">support@geico-pro.com</a></p>
-          </div>
-          <div class="connect-info-card reveal d3">
-            <span class="ci-icon">🕐</span>
-            <h4>Hours</h4>
-            <p>Mon–Fri 9AM–6PM EST</p>
-          </div>
-        </div>
-      </div>
+  <div class="connect-below"><div class="container">
+    <h2>Or Call Us Directly</h2>
+    <p>Prefer to talk now? Our specialists are available during business hours.</p>
+    <a href="tel:+18885240250" class="cta-phone" style="margin-bottom:16px">(888) 524-0250</a>
+    <div class="cta-hours" style="margin-bottom:32px">Mon–Fri 9AM–6PM EST</div>
+    <div class="connect-info-row">
+      <div class="ci-card"><span class="ci-icon">📞</span><h4>Phone</h4><p><a href="tel:+18885240250">(888) 524-0250</a></p></div>
+      <div class="ci-card"><span class="ci-icon">📧</span><h4>Email</h4><p><a href="mailto:support@geico-pro.com">support@geico-pro.com</a></p></div>
+      <div class="ci-card"><span class="ci-icon">🕐</span><h4>Hours</h4><p>Mon–Fri 9AM–6PM EST</p></div>
     </div>
-  </section>
+  </div></div>
 </div>
-
 
 <!-- ========================= DEALS ========================= -->
 <div id="page-deals" class="page">
   <div class="page-banner"><div class="container"><h1>Current Deals & Discounts</h1><p>Discover all the ways you can save on your GEICO insurance policy.</p></div></div>
-  <section class="section">
-    <div class="container">
-      <div class="deals-grid">
-        <div class="deal reveal d1"><div class="deal-tag">Popular</div><h3>Multi-Policy Bundle</h3><div class="amount">Save up to 25%</div><p>Bundle auto with homeowners, renters, condo, motorcycle, or boat insurance and save on your total premium.</p></div>
-        <div class="deal reveal d2"><div class="deal-tag">New</div><h3>Safe Driver Discount</h3><div class="amount">Save up to 26%</div><p>Clean driving record with no accidents or violations? You could qualify for significant savings.</p></div>
-        <div class="deal reveal d3"><h3>Military & Federal Employee</h3><div class="amount">Special Rates</div><p>GEICO was founded to serve government employees. Active military, veterans, and federal workers get special pricing.</p></div>
-        <div class="deal reveal d4"><h3>Good Student Discount</h3><div class="amount">Save up to 15%</div><p>Full-time students under 25 with a B average or better can qualify for reduced auto insurance rates.</p></div>
-        <div class="deal reveal d1"><h3>Multi-Vehicle Discount</h3><div class="amount">Save up to 25%</div><p>Insure more than one vehicle on the same policy and enjoy a multi-vehicle discount on your premium.</p></div>
-        <div class="deal reveal d2"><h3>Paid-in-Full Discount</h3><div class="amount">Save up to 10%</div><p>Pay your full premium upfront instead of monthly installments and receive an additional discount.</p></div>
-        <div class="deal reveal d3"><h3>DriveEasy® Program</h3><div class="amount">Earn Discounts</div><p>Track your safe driving habits with the GEICO DriveEasy app and earn personalized discounts.</p></div>
-        <div class="deal reveal d4"><h3>Defensive Driving Course</h3><div class="amount">Save up to 10%</div><p>Complete an approved defensive driving course and qualify for a discount on your auto insurance.</p></div>
-      </div>
-      <div style="text-align:center;margin-top:40px" class="reveal"><p style="color:var(--gray-400);font-size:14px;margin-bottom:12px">Not sure which discounts you qualify for? Our specialists can help!</p><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call (888) 524-0250</a></div>
-    </div>
-  </section>
+  <section class="section"><div class="container"><div class="deals-grid">
+    <div class="deal reveal d1"><div class="deal-tag">Popular</div><h3>Multi-Policy Bundle</h3><div class="amount">Save up to 25%</div><p>Bundle auto with homeowners, renters, condo, motorcycle, or boat insurance.</p></div>
+    <div class="deal reveal d2"><div class="deal-tag">New</div><h3>Safe Driver Discount</h3><div class="amount">Save up to 26%</div><p>Clean driving record? Qualify for significant savings on your auto premium.</p></div>
+    <div class="deal reveal d3"><h3>Military & Federal</h3><div class="amount">Special Rates</div><p>Active military, veterans, and federal workers get special pricing and support.</p></div>
+    <div class="deal reveal d4"><h3>Good Student</h3><div class="amount">Save up to 15%</div><p>Full-time students under 25 with a B average or better qualify for reduced rates.</p></div>
+    <div class="deal reveal d1"><h3>Multi-Vehicle</h3><div class="amount">Save up to 25%</div><p>Insure more than one vehicle on the same policy for a multi-vehicle discount.</p></div>
+    <div class="deal reveal d2"><h3>Paid-in-Full</h3><div class="amount">Save up to 10%</div><p>Pay your full premium upfront for an additional discount on your policy.</p></div>
+    <div class="deal reveal d3"><h3>DriveEasy®</h3><div class="amount">Earn Discounts</div><p>Track safe driving habits with the GEICO DriveEasy app and earn rewards.</p></div>
+    <div class="deal reveal d4"><h3>Defensive Driving</h3><div class="amount">Save up to 10%</div><p>Complete an approved defensive driving course and qualify for a discount.</p></div>
+  </div><div style="text-align:center;margin-top:40px" class="reveal"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call (888) 524-0250</a></div></div></section>
 </div>
-
 
 <!-- ========================= COVERAGE ========================= -->
 <div id="page-coverage" class="page">
-  <div class="page-banner"><div class="container"><h1>Insurance Coverage Options</h1><p>Explore the full range of GEICO insurance products available to protect you and your family.</p></div></div>
-  <section class="section">
-    <div class="container">
-      <div class="section-head reveal"><h2>All Coverage Types</h2><p>GEICO offers over 20 insurance products for every aspect of your life.</p></div>
-      <div class="cov-grid">
-        <div class="cov-card reveal d1"><span class="cov-emoji">🚗</span><h4>Auto Insurance</h4><p>Liability, collision, comprehensive, and more. Available in all 50 states.</p><a href="#" class="card-link" onclick="go('compare')">Compare Plans →</a></div>
-        <div class="cov-card reveal d2"><span class="cov-emoji">🏠</span><h4>Homeowners</h4><p>Protect your home, belongings, and liability. We shop multiple providers.</p><a href="#" class="card-link" onclick="go('compare')">Compare Plans →</a></div>
-        <div class="cov-card reveal d3"><span class="cov-emoji">🔑</span><h4>Renters Insurance</h4><p>Affordable protection for personal belongings starting at ~$12/month.</p><a href="#" class="card-link" onclick="go('compare')">Compare Plans →</a></div>
-        <div class="cov-card reveal d1"><span class="cov-emoji">🏢</span><h4>Condo Insurance</h4><p>Interior coverage and personal property protection for condo residents.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d2"><span class="cov-emoji">🏍️</span><h4>Motorcycle</h4><p>Comprehensive motorcycle coverage including liability and roadside assistance.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d3"><span class="cov-emoji">⛵</span><h4>Boat & PWC</h4><p>Watercraft coverage for boats and personal watercraft.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d1"><span class="cov-emoji">🚐</span><h4>RV Insurance</h4><p>Full protection for your recreational vehicle, motorhome, or camper.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d2"><span class="cov-emoji">☂️</span><h4>Umbrella</h4><p>Extra liability protection beyond standard policy limits.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d3"><span class="cov-emoji">❤️</span><h4>Life Insurance</h4><p>Term and whole life policies to secure your family's future.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d1"><span class="cov-emoji">🐾</span><h4>Pet Insurance</h4><p>Cover vet bills and keep your furry family members protected.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d2"><span class="cov-emoji">✈️</span><h4>Travel Insurance</h4><p>Flight and trip insurance for worry-free vacations.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-        <div class="cov-card reveal d3"><span class="cov-emoji">💼</span><h4>Business Insurance</h4><p>Commercial auto, general liability, and business owners policies.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
-      </div>
+  <div class="page-banner"><div class="container"><h1>Insurance Coverage Options</h1><p>Explore the full range of GEICO insurance products.</p></div></div>
+  <section class="section"><div class="container">
+    <div class="cov-grid">
+      <div class="cov-card reveal d1"><span class="cov-emoji">🚗</span><h4>Auto</h4><p>All 50 states. Liability, collision, comprehensive & more.</p><a href="#" class="card-link" onclick="go('geico-auto')">Details →</a></div>
+      <div class="cov-card reveal d2"><span class="cov-emoji">🏠</span><h4>Homeowners</h4><p>Protect home, belongings, and liability.</p><a href="#" class="card-link" onclick="go('geico-home')">Details →</a></div>
+      <div class="cov-card reveal d3"><span class="cov-emoji">🔑</span><h4>Renters</h4><p>Starting ~$12/mo. Personal property protection.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d1"><span class="cov-emoji">🏍️</span><h4>Motorcycle</h4><p>Liability, collision, roadside assistance.</p><a href="#" class="card-link" onclick="go('geico-moto')">Details →</a></div>
+      <div class="cov-card reveal d2"><span class="cov-emoji">☂️</span><h4>Umbrella</h4><p>Extra liability beyond standard limits.</p><a href="#" class="card-link" onclick="go('geico-umbrella')">Details →</a></div>
+      <div class="cov-card reveal d3"><span class="cov-emoji">⛵</span><h4>Boat & PWC</h4><p>Watercraft coverage.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d1"><span class="cov-emoji">🚐</span><h4>RV</h4><p>Motorhome & camper protection.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d2"><span class="cov-emoji">❤️</span><h4>Life</h4><p>Term and whole life policies.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d3"><span class="cov-emoji">🐾</span><h4>Pet</h4><p>Cover vet bills for your pets.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d1"><span class="cov-emoji">✈️</span><h4>Travel</h4><p>Flight & trip insurance.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d2"><span class="cov-emoji">💼</span><h4>Business</h4><p>Commercial auto & liability.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
+      <div class="cov-card reveal d3"><span class="cov-emoji">🔒</span><h4>Identity Theft</h4><p>Protect your identity & finances.</p><a href="#" class="card-link" onclick="go('connect')">Get Quote →</a></div>
     </div>
-  </section>
+  </div></section>
 </div>
 
+<!-- ============ GEICO SUB-PAGES (with popup trigger) ============ -->
+<div id="page-geico-auto" class="page geico-subpage">
+  <div class="geico-page-hero"><div class="container"><span class="g-emoji">🚗</span><h1>GEICO Auto Insurance</h1><p>Affordable and reliable auto coverage for over 85 years. Available in all 50 states with 24/7 claims service and the #1 rated insurance app.</p></div></div>
+  <section class="geico-content"><div class="container">
+    <div class="section-head reveal"><h2>Auto Coverage Features</h2><p>GEICO offers flexible auto insurance with personalized coverage options and a variety of discounts.</p></div>
+    <div class="geico-features">
+      <div class="gf-card reveal d1"><div class="gf-icon">🛡️</div><div><h4>Liability Coverage</h4><p>Pays damages for bodily injury or property damage resulting from an accident you cause.</p></div></div>
+      <div class="gf-card reveal d2"><div class="gf-icon">💥</div><div><h4>Collision Coverage</h4><p>Pays for damage to your car when it hits or is hit by another vehicle or object.</p></div></div>
+      <div class="gf-card reveal d3"><div class="gf-icon">🌧️</div><div><h4>Comprehensive Coverage</h4><p>Covers damage from theft, vandalism, flood, fire, or other covered events.</p></div></div>
+      <div class="gf-card reveal d4"><div class="gf-icon">🚑</div><div><h4>Medical Payments</h4><p>Covers medical expenses for you and passengers regardless of who is at fault.</p></div></div>
+      <div class="gf-card reveal d1"><div class="gf-icon">🚗</div><div><h4>Rental Reimbursement</h4><p>Pays for a rental car while your vehicle is being repaired after a covered claim.</p></div></div>
+      <div class="gf-card reveal d2"><div class="gf-icon">🔧</div><div><h4>Mechanical Breakdown</h4><p>For vehicles under 15 months or 15,000 miles. Covers breakdowns beyond factory warranty.</p></div></div>
+      <div class="gf-card reveal d3"><div class="gf-icon">🛣️</div><div><h4>Roadside Assistance</h4><p>24/7 help for towing, flat tires, dead batteries, lockouts, and fuel delivery.</p></div></div>
+      <div class="gf-card reveal d4"><div class="gf-icon">📱</div><div><h4>DriveEasy® App</h4><p>Track your driving habits and earn personalized discounts based on safe behavior.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Get Auto Quote — (888) 524-0250</a></div>
+  </div></section>
+</div>
+
+<div id="page-geico-home" class="page geico-subpage">
+  <div class="geico-page-hero"><div class="container"><span class="g-emoji">🏠</span><h1>GEICO Homeowners Insurance</h1><p>Protect your home and belongings. GEICO Insurance Agency shops multiple providers to find you the best rate and coverage.</p></div></div>
+  <section class="geico-content"><div class="container">
+    <div class="section-head reveal"><h2>Homeowners Coverage Features</h2><p>Comprehensive protection for your home, property, and personal liability.</p></div>
+    <div class="geico-features">
+      <div class="gf-card reveal d1"><div class="gf-icon">🏗️</div><div><h4>Dwelling Coverage</h4><p>Protects the structure of your home from damage caused by covered perils like fire, wind, and hail.</p></div></div>
+      <div class="gf-card reveal d2"><div class="gf-icon">📦</div><div><h4>Personal Property</h4><p>Covers belongings inside your home like furniture, electronics, clothing, and jewelry.</p></div></div>
+      <div class="gf-card reveal d3"><div class="gf-icon">⚖️</div><div><h4>Liability Protection</h4><p>Covers legal costs if someone is injured on your property or if you damage someone else's property.</p></div></div>
+      <div class="gf-card reveal d4"><div class="gf-icon">🏨</div><div><h4>Loss of Use</h4><p>Pays for temporary living expenses if your home becomes uninhabitable due to a covered event.</p></div></div>
+      <div class="gf-card reveal d1"><div class="gf-icon">🏚️</div><div><h4>Other Structures</h4><p>Covers detached garages, fences, sheds, and other structures on your property.</p></div></div>
+      <div class="gf-card reveal d2"><div class="gf-icon">💰</div><div><h4>Multi-Policy Discount</h4><p>Bundle with auto insurance for up to 25% savings on your total premium.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Get Home Quote — (888) 524-0250</a></div>
+  </div></section>
+</div>
+
+<div id="page-geico-moto" class="page geico-subpage">
+  <div class="geico-page-hero"><div class="container"><span class="g-emoji">🏍️</span><h1>GEICO Motorcycle Insurance</h1><p>Hit the road with confidence. Comprehensive motorcycle coverage with flexible options and competitive rates.</p></div></div>
+  <section class="geico-content"><div class="container">
+    <div class="section-head reveal"><h2>Motorcycle Coverage Features</h2><p>Protect your ride with coverage designed specifically for motorcycle enthusiasts.</p></div>
+    <div class="geico-features">
+      <div class="gf-card reveal d1"><div class="gf-icon">🛡️</div><div><h4>Liability Coverage</h4><p>Covers bodily injury and property damage to others in accidents you cause.</p></div></div>
+      <div class="gf-card reveal d2"><div class="gf-icon">💥</div><div><h4>Collision Coverage</h4><p>Covers damage to your motorcycle from collisions with vehicles or objects.</p></div></div>
+      <div class="gf-card reveal d3"><div class="gf-icon">🏍️</div><div><h4>Custom Parts Coverage</h4><p>Protection for aftermarket parts, accessories, and custom equipment.</p></div></div>
+      <div class="gf-card reveal d4"><div class="gf-icon">🛣️</div><div><h4>Roadside Assistance</h4><p>24/7 towing, fuel delivery, flat tire help, and lockout service.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Get Motorcycle Quote — (888) 524-0250</a></div>
+  </div></section>
+</div>
+
+<div id="page-geico-umbrella" class="page geico-subpage">
+  <div class="geico-page-hero"><div class="container"><span class="g-emoji">☂️</span><h1>GEICO Umbrella Insurance</h1><p>Extra liability protection that goes beyond the limits of your auto, homeowners, or other policies for total peace of mind.</p></div></div>
+  <section class="geico-content"><div class="container">
+    <div class="section-head reveal"><h2>Umbrella Coverage Features</h2><p>An affordable way to protect your assets and future earnings from major claims and lawsuits.</p></div>
+    <div class="geico-features">
+      <div class="gf-card reveal d1"><div class="gf-icon">💰</div><div><h4>Extra Liability</h4><p>Provides additional coverage of $1M–$5M beyond your existing policy limits.</p></div></div>
+      <div class="gf-card reveal d2"><div class="gf-icon">⚖️</div><div><h4>Lawsuit Protection</h4><p>Covers legal defense costs and judgments from personal liability lawsuits.</p></div></div>
+      <div class="gf-card reveal d3"><div class="gf-icon">🏠</div><div><h4>Broad Coverage</h4><p>Extends across auto, home, boat, and other liability policies you hold.</p></div></div>
+      <div class="gf-card reveal d4"><div class="gf-icon">🤝</div><div><h4>Affordable Protection</h4><p>Typically costs $150–$300/year for $1M in additional coverage.</p></div></div>
+    </div>
+    <div style="text-align:center;margin-top:40px" class="reveal"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Get Umbrella Quote — (888) 524-0250</a></div>
+  </div></section>
+</div>
 
 <!-- ========================= FAQ ========================= -->
 <div id="page-faq" class="page">
-  <div class="page-banner"><div class="container"><h1>Frequently Asked Questions</h1><p>Find answers to common questions about GEICO insurance and our guidance service.</p></div></div>
-  <section class="section">
-    <div class="container">
-      <div class="faq-list">
-        <div class="faq-item reveal d1"><div class="faq-q" onclick="toggleFaq(this)">What is GEICO-Pro.com?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO-Pro.com is an independent guidance and comparison service that helps customers understand GEICO's insurance products. We are not affiliated with, endorsed by, or sponsored by GEICO. We provide information, help you compare coverage options, and connect you with specialists for personalized assistance.</div></div></div>
-        <div class="faq-item reveal d2"><div class="faq-q" onclick="toggleFaq(this)">What types of insurance does GEICO offer?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO offers a wide range of insurance products including auto, homeowners, renters, condo, motorcycle, ATV, boat, RV, life, umbrella, pet, travel, business, commercial auto, and identity theft protection. They also offer specialty products like flood, earthquake, and event insurance through partner companies.</div></div></div>
-        <div class="faq-item reveal d3"><div class="faq-q" onclick="toggleFaq(this)">How much can I save with GEICO?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">Savings vary depending on your coverage, location, and driving history. On average, GEICO customers report saving $500 or more per year on auto insurance. Additional savings are available through multi-policy discounts, safe driver discounts, military discounts, and more.</div></div></div>
-        <div class="faq-item reveal d1"><div class="faq-q" onclick="toggleFaq(this)">What discounts are available?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO offers numerous discounts including multi-policy bundles (up to 25%), safe driver discount (up to 26%), good student discount (up to 15%), military and federal employee special rates, multi-vehicle discount, paid-in-full discount, defensive driving course discount, and the DriveEasy safe driving program.</div></div></div>
-        <div class="faq-item reveal d2"><div class="faq-q" onclick="toggleFaq(this)">Is GEICO available in my state?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO provides auto insurance in all 50 states and the District of Columbia. Homeowners, renters, and other property insurance products are also widely available through GEICO Insurance Agency partners. Call us at (888) 524-0250 to check availability.</div></div></div>
-        <div class="faq-item reveal d3"><div class="faq-q" onclick="toggleFaq(this)">How do I file a claim?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO offers 24/7 claims service through multiple channels. You can file a claim through the GEICO mobile app, on geico.com, or by calling GEICO directly. The app also lets you track claim status, upload photos, and communicate with your adjuster.</div></div></div>
-        <div class="faq-item reveal d1"><div class="faq-q" onclick="toggleFaq(this)">Can I bundle multiple policies?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes! GEICO offers a multi-policy discount when you combine multiple insurance products. Common bundles include auto + homeowners, auto + renters, auto + condo, and auto + motorcycle. Bundling can save you up to 25% on your total premiums.</div></div></div>
-        <div class="faq-item reveal d2"><div class="faq-q" onclick="toggleFaq(this)">Does calling GEICO-Pro.com cost anything?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">No, our service is completely free. We provide information and guidance at no cost to you. There is no obligation when you call, and our specialists are happy to answer your questions.</div></div></div>
-      </div>
-      <div style="text-align:center;margin-top:40px" class="reveal"><p style="color:var(--gray-400);font-size:14px;margin-bottom:12px">Still have questions? We're here to help.</p><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call (888) 524-0250</a></div>
-    </div>
-  </section>
+  <div class="page-banner"><div class="container"><h1>Frequently Asked Questions</h1><p>Find answers to common questions about GEICO insurance and our service.</p></div></div>
+  <section class="section"><div class="container"><div class="faq-list">
+    <div class="faq-item reveal d1"><div class="faq-q" onclick="toggleFaq(this)">What is GEICO-Pro.com?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO-Pro.com is an independent guidance service that helps customers understand GEICO's insurance products. We are not affiliated with GEICO. We provide information, help compare coverage, and connect you with specialists.</div></div></div>
+    <div class="faq-item reveal d2"><div class="faq-q" onclick="toggleFaq(this)">What types of insurance does GEICO offer?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO offers auto, homeowners, renters, condo, motorcycle, ATV, boat, RV, life, umbrella, pet, travel, business, commercial auto, identity theft protection, flood, earthquake, and event insurance.</div></div></div>
+    <div class="faq-item reveal d3"><div class="faq-q" onclick="toggleFaq(this)">How much can I save?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">On average, customers save $500+ per year. GEICO's average rates are ~21% below the national average. Additional savings through bundling, safe driver, military, student, and other discounts.</div></div></div>
+    <div class="faq-item reveal d1"><div class="faq-q" onclick="toggleFaq(this)">Is GEICO available in my state?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO provides auto insurance in all 50 states and DC. Property products are widely available through partner companies. Call (888) 524-0250 to check availability.</div></div></div>
+    <div class="faq-item reveal d2"><div class="faq-q" onclick="toggleFaq(this)">How do I file a claim?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">GEICO offers 24/7 claims service via their mobile app, website, or phone. The app lets you track claims, upload photos, and communicate with adjusters.</div></div></div>
+    <div class="faq-item reveal d3"><div class="faq-q" onclick="toggleFaq(this)">Can I bundle policies?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes! Bundle auto + home, renters, condo, or motorcycle for up to 25% savings on your total premiums.</div></div></div>
+    <div class="faq-item reveal d1"><div class="faq-q" onclick="toggleFaq(this)">Is calling free?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">Yes, our service is completely free. No obligation, no pressure. Our specialists are happy to answer questions and help you understand your options.</div></div></div>
+    <div class="faq-item reveal d2"><div class="faq-q" onclick="toggleFaq(this)">What is the DriveEasy® program?<span class="toggle">+</span></div><div class="faq-a"><div class="faq-a-inner">DriveEasy is an optional app-based program that tracks driving habits like speed, braking, and phone use. Safe drivers earn personalized discounts. Not available in all states.</div></div></div>
+  </div><div style="text-align:center;margin-top:40px" class="reveal"><a href="tel:+18885240250" class="btn btn-primary btn-lg">📞 Call (888) 524-0250</a></div></div></section>
 </div>
 
-
-<!-- ==================== FOOTER ==================== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <a href="#" class="logo" onclick="go('home')"><div class="logo-mark"><svg viewBox="0 0 40 40" fill="none"><path d="M10 28V14L14 12.5V27L20 18L26 27V12.5L30 14V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9" r="3" fill="#00E676"/></svg></div><span style="color:white">GEICO<span style="color:var(--green-500)">-Pro</span></span></a>
-        <p>Your independent guide to GEICO insurance products. Compare coverage and connect with specialists.</p>
-        <div class="footer-contact">📞 <a href="tel:+18885240250">(888) 524-0250</a> — Call for Expert Assistance</div>
-        <div class="footer-contact">📧 <a href="mailto:support@geico-pro.com">support@geico-pro.com</a> — Email Support</div>
-        <div class="footer-contact" style="margin-top:8px">🕐 Mon–Fri 9AM–6PM EST</div>
-      </div>
-      <div><h5>Company</h5><ul><li><a href="#" onclick="go('home')">About</a></li><li><a href="#" onclick="go('home')">Why Us</a></li><li><a href="#" onclick="go('connect')">Connect Me</a></li><li><a href="#" onclick="go('connect')">Contact</a></li></ul></div>
-      <div><h5>Resources</h5><ul><li><a href="#" onclick="go('compare')">Compare Plans</a></li><li><a href="#" onclick="go('deals')">Current Deals</a></li><li><a href="#" onclick="go('coverage')">Coverage Options</a></li><li><a href="#" onclick="go('deals')">Bundles</a></li><li><a href="#" onclick="go('faq')">FAQ</a></li></ul></div>
-      <div><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li><li><a href="#">Disclosures</a></li><li><a href="#">Accessibility</a></li><li><a href="#">Sitemap</a></li></ul></div>
-      <div><h5>Products</h5><ul><li><a href="#" onclick="go('coverage')">Auto Insurance</a></li><li><a href="#" onclick="go('coverage')">Homeowners</a></li><li><a href="#" onclick="go('coverage')">Renters</a></li><li><a href="#" onclick="go('coverage')">Motorcycle</a></li></ul></div>
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#" class="logo" onclick="go('home')"><div class="logo-mark"><svg viewBox="0 0 40 40" fill="none"><path d="M10 28V14L14 12.5V27L20 18L26 27V12.5L30 14V28" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="9" r="3" fill="#00E676"/></svg></div><span style="color:white">GEICO<span style="color:var(--g5)">-Pro</span></span></a>
+      <p>Your independent guide to GEICO insurance products. Compare coverage and connect with specialists.</p>
+      <div class="footer-contact">📞 <a href="tel:+18885240250">(888) 524-0250</a></div>
+      <div class="footer-contact">📧 <a href="mailto:support@geico-pro.com">support@geico-pro.com</a></div>
+      <div class="footer-contact">🕐 Mon–Fri 9AM–6PM EST</div>
     </div>
-    <div class="footer-disc">
-      <p><strong style="color:rgba(255,255,255,0.5)">Important Disclosures</strong></p>
-      <p>GEICO-Pro.com is an independent guidance and comparison service and is not affiliated with, endorsed by, or sponsored by GEICO (Government Employees Insurance Company).</p>
-      <p>GEICO and its trademarks belong to their respective owners. GEICO is a registered service mark of Government Employees Insurance Company, Washington, DC 20076; a Berkshire Hathaway Inc. subsidiary.</p>
-      <p>Availability and pricing vary by location and are subject to change.</p>
-    </div>
-    <div class="footer-bottom"><span>© 2026 GEICO-Pro.com. All rights reserved.</span><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>
+    <div><h5>Company</h5><ul><li><a href="#" onclick="go('home')">About</a></li><li><a href="#" onclick="go('home')">Why Us</a></li><li><a href="#" onclick="go('connect')">Connect Me</a></li><li><a href="#" onclick="go('connect')">Contact</a></li></ul></div>
+    <div><h5>Resources</h5><ul><li><a href="#" onclick="go('compare')">Compare Plans</a></li><li><a href="#" onclick="go('deals')">Current Deals</a></li><li><a href="#" onclick="go('coverage')">Coverage Options</a></li><li><a href="#" onclick="go('faq')">FAQ</a></li></ul></div>
+    <div><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li><li><a href="#">Disclosures</a></li><li><a href="#">Accessibility</a></li></ul></div>
+    <div><h5>GEICO</h5><ul><li><a href="#" onclick="go('geico-auto')">Auto Insurance</a></li><li><a href="#" onclick="go('geico-home')">Homeowners</a></li><li><a href="#" onclick="go('geico-moto')">Motorcycle</a></li><li><a href="#" onclick="go('geico-umbrella')">Umbrella</a></li></ul></div>
   </div>
-</footer>
+  <div class="footer-disc">
+    <p><strong style="color:rgba(255,255,255,.5)">Important Disclosures</strong></p>
+    <p>GEICO-Pro.com is an independent guidance service and is not affiliated with, endorsed by, or sponsored by GEICO.</p>
+    <p>GEICO and trademarks belong to their respective owners. GEICO is a registered service mark of Government Employees Insurance Company, Washington, DC 20076; a Berkshire Hathaway Inc. subsidiary.</p>
+    <p>Availability and pricing vary by location and are subject to change.</p>
+  </div>
+  <div class="footer-bottom"><span>© 2026 GEICO-Pro.com. All rights reserved.</span><div><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Accessibility</a></div></div>
+</div></footer>
 
-
-<!-- ==================== POPUP ==================== -->
+<!-- POPUP — highly animated, only on GEICO sub-pages -->
 <div class="popup-bg" id="popupBg">
   <div class="popup-box">
     <div class="popup-top">
       <button class="popup-close" onclick="hidePopup()">✕</button>
-      <span class="emoji">🛡️</span>
+      <div class="popup-rings"><div class="popup-ring"></div><div class="popup-ring"></div><div class="popup-ring"></div></div>
+      <div class="popup-confetti"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="p-emoji">🛡️</span>
       <h3>Get Your Free Insurance Quote!</h3>
-      <p>Talk to a specialist and discover how much you could save.</p>
+      <p class="p-sub">Talk to a specialist and discover how much you could save today.</p>
     </div>
+    <div class="popup-progress"><div class="popup-progress-fill"></div></div>
     <div class="popup-body">
       <div class="popup-feat"><div class="pf-icon">💰</div><div><h4>Save $500+ Per Year</h4><p>Average annual savings when switching to GEICO coverage.</p></div></div>
-      <div class="popup-feat"><div class="pf-icon">📋</div><div><h4>Free, No-Obligation Quote</h4><p>Get a personalized quote in minutes with no commitment.</p></div></div>
+      <div class="popup-feat"><div class="pf-icon">📋</div><div><h4>Free, No-Obligation Quote</h4><p>Personalized quote in minutes — zero commitment required.</p></div></div>
       <div class="popup-feat"><div class="pf-icon">🎯</div><div><h4>Expert Guidance</h4><p>Our specialists find the best coverage and discounts for you.</p></div></div>
+      <div class="popup-feat"><div class="pf-icon">⚡</div><div><h4>Quick & Easy Process</h4><p>Most customers are quoted and covered in under 15 minutes.</p></div></div>
+      <div class="popup-stars"><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span></div>
+      <div class="popup-rating-text">Rated 4.9/5 by thousands of customers</div>
       <div class="popup-btns">
-        <a href="tel:+18885240250" class="btn btn-primary">📞 Call Now</a>
+        <a href="tel:+18885240250" class="btn btn-primary popup-shimmer">📞 Call Now</a>
         <button class="btn btn-outline" onclick="hidePopup()">Maybe Later</button>
       </div>
     </div>
@@ -1015,115 +697,75 @@ button{font-family:inherit;cursor:pointer}
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-
-<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-// === Page Navigation with transition ===
+// === GEICO sub-pages list (popup only shows on these) ===
+const geicoPages = ['geico-auto','geico-home','geico-moto','geico-umbrella'];
+
+// === Navigation ===
 function go(page) {
-  const pages = document.querySelectorAll('.page');
-  pages.forEach(p => { p.classList.remove('active'); p.style.animation = 'none'; });
-  const target = document.getElementById('page-' + page);
-  target.style.animation = 'fadeIn .35s ease';
-  target.classList.add('active');
-  document.querySelectorAll('.nav > a').forEach(a => a.classList.toggle('active', a.dataset.page === page));
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-  setTimeout(initReveal, 100);
+  document.querySelectorAll('.page').forEach(p=>{p.classList.remove('active');p.style.animation='none'});
+  const t=document.getElementById('page-'+page);
+  t.style.animation='fadeIn .35s ease';t.classList.add('active');
+  document.querySelectorAll('.nav > a').forEach(a=>a.classList.toggle('active',a.dataset.page===page));
+  window.scrollTo({top:0,behavior:'smooth'});
+  setTimeout(initReveal,100);
+  // Trigger popup only on GEICO sub-pages
+  if(geicoPages.includes(page)){setTimeout(showPopup,5000)}
 }
 
-// === Mobile menu ===
-function openMobile() { document.getElementById('mobileMenu').classList.add('open'); document.body.style.overflow = 'hidden'; }
-function closeMobile() { document.getElementById('mobileMenu').classList.remove('open'); document.body.style.overflow = ''; }
-function closeMobileOv(e) { if (e.target === document.getElementById('mobileMenu')) closeMobile(); }
+// === Mobile ===
+function openMobile(){document.getElementById('mobileMenu').classList.add('open');document.body.style.overflow='hidden'}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.body.style.overflow=''}
+function closeMobileOv(e){if(e.target===document.getElementById('mobileMenu'))closeMobile()}
 
-// === Header + Scroll top ===
-window.addEventListener('scroll', () => {
-  document.getElementById('siteHeader').classList.toggle('scrolled', scrollY > 20);
-  document.getElementById('scrollTop').classList.toggle('show', scrollY > 400);
-}, { passive: true });
+// === Header scroll ===
+window.addEventListener('scroll',()=>{
+  document.getElementById('siteHeader').classList.toggle('scrolled',scrollY>20);
+  document.getElementById('scrollTop').classList.toggle('show',scrollY>400);
+},{passive:true});
 
 // === FAQ ===
-function toggleFaq(el) {
-  const item = el.parentElement;
-  const ans = item.querySelector('.faq-a');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = '0'; });
-  if (!isOpen) { item.classList.add('open'); ans.style.maxHeight = ans.scrollHeight + 'px'; }
+function toggleFaq(el){
+  const item=el.parentElement,ans=item.querySelector('.faq-a'),isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight='0'});
+  if(!isOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px'}
 }
 
-// === Popup ===
-let popupDone = false;
-function showPopup() { if (popupDone) return; popupDone = true; document.getElementById('popupBg').classList.add('show'); }
-function hidePopup() { document.getElementById('popupBg').classList.remove('show'); }
-setTimeout(showPopup, 8000);
-window.addEventListener('scroll', () => { if ((scrollY + innerHeight) / document.body.scrollHeight > 0.6) showPopup(); }, { passive: true });
-document.getElementById('popupBg').addEventListener('click', e => { if (e.target === document.getElementById('popupBg')) hidePopup(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') hidePopup(); });
+// === Popup (only on GEICO sub-pages) ===
+let popupShown=false;
+function showPopup(){if(popupShown)return;const active=document.querySelector('.page.active');if(!active||!active.classList.contains('geico-subpage'))return;popupShown=true;document.getElementById('popupBg').classList.add('show')}
+function hidePopup(){document.getElementById('popupBg').classList.remove('show')}
+document.getElementById('popupBg').addEventListener('click',e=>{if(e.target===document.getElementById('popupBg'))hidePopup()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')hidePopup()});
+// Also trigger on scroll within GEICO pages
+window.addEventListener('scroll',()=>{
+  const active=document.querySelector('.page.active');
+  if(active&&active.classList.contains('geico-subpage')&&(scrollY+innerHeight)/document.body.scrollHeight>.5)showPopup();
+},{passive:true});
 
-// === Scroll reveal (IntersectionObserver) ===
-function initReveal() {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('vis'); obs.unobserve(entry.target); } });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal:not(.vis)').forEach(el => obs.observe(el));
+// === Scroll reveal ===
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal:not(.vis)').forEach(el=>obs.observe(el));
 }
 initReveal();
 
 // === Counter animation ===
-function animateCounters() {
-  document.querySelectorAll('.hero-stat-value[data-target]').forEach(el => {
-    const target = +el.dataset.target;
-    const prefix = el.dataset.prefix || '';
-    const suffix = el.dataset.suffix || '';
-    let current = 0;
-    const step = Math.ceil(target / 50);
-    const timer = setInterval(() => {
-      current += step;
-      if (current >= target) { current = target; clearInterval(timer); }
-      el.textContent = prefix + current + suffix;
-    }, 25);
+function animateCounters(){
+  document.querySelectorAll('.hero-stat-value[data-target]').forEach(el=>{
+    const t=+el.dataset.target,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';
+    let c=0;const step=Math.ceil(t/50);
+    const timer=setInterval(()=>{c+=step;if(c>=t){c=t;clearInterval(timer)}el.textContent=pre+c+suf},25);
   });
 }
-// Trigger counters when hero is visible
-const heroObs = new IntersectionObserver(entries => {
-  entries.forEach(entry => { if (entry.isIntersecting) { animateCounters(); heroObs.disconnect(); } });
-}, { threshold: 0.3 });
-const heroStats = document.querySelector('.hero-stats');
-if (heroStats) heroObs.observe(heroStats);
+const heroObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){animateCounters();heroObs.disconnect()}})},{threshold:.3});
+const hs=document.querySelector('.hero-stats');if(hs)heroObs.observe(hs);
 
-// === Cursor trail (desktop only) ===
-const dot = document.getElementById('cursorDot');
-let mouseX = 0, mouseY = 0, dotX = 0, dotY = 0;
-document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; dot.classList.add('show'); });
-document.addEventListener('mouseleave', () => dot.classList.remove('show'));
-(function moveDot() {
-  dotX += (mouseX - dotX) * 0.15;
-  dotY += (mouseY - dotY) * 0.15;
-  dot.style.left = dotX + 'px';
-  dot.style.top = dotY + 'px';
-  requestAnimationFrame(moveDot);
-})();
-
-// === Tilt effect on cards (subtle) ===
-document.querySelectorAll('.card, .prov-card, .why-card, .cov-card, .deal').forEach(card => {
-  card.addEventListener('mousemove', e => {
-    const rect = card.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    card.style.transform = `translateY(-6px) perspective(600px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
-  });
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
+// === Card tilt ===
+document.querySelectorAll('.card,.prov-card,.why-card,.cov-card,.deal,.gf-card,.test-card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-.5;const y=(e.clientY-r.top)/r.height-.5;c.style.transform=`translateY(-6px) perspective(600px) rotateY(${x*4}deg) rotateX(${-y*4}deg)`});
+  c.addEventListener('mouseleave',()=>{c.style.transform=''});
 });
-
-// === Smooth parallax on hero background orbs ===
-window.addEventListener('scroll', () => {
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-  const scrolled = window.scrollY;
-  hero.style.setProperty('--parallax', scrolled * 0.3 + 'px');
-}, { passive: true });
 </script>
-
 </body>
 </html>
