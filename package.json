@@ -1,0 +1,10 @@
+{
+  "name": "geico-pro",
+  "version": "1.0.0",
+  "description": "GEICO-Pro.com - Independent Insurance Guidance Service",
+  "private": true,
+  "scripts": {
+    "start": "npx serve public",
+    "dev": "npx serve public -l 3000"
+  }
+}
